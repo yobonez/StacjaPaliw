@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StacjaPaliwUI
+namespace StacjaPaliwLogic.Models
 {
-    internal class OfferChallenge
+    public class OfferChallenge
     {
         internal int m_challenge_id;
         internal int m_cmp_value;
         internal char m_cmp_equator;
 
-        public bool VerifyChallenge() { return false; }
+        //public bool VerifyChallenge() { return false; }
     }
 }

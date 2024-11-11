@@ -1,3 +1,6 @@
+using StacjaPaliwLogic.DataAccess;
+using StacjaPaliwLogic.Models;
+
 namespace StacjaPaliw
 {
     internal static class Program
@@ -14,6 +17,9 @@ namespace StacjaPaliw
             Application.Run(new FormWelcome());
 
             // TODO: ogarnij se dostêp do danych, póŸniej siê martw interfejsem
+
+            //test
+            IDataAccess<Offer> offerDataAccess = new OfferDataAccess();
         }
     }
 }

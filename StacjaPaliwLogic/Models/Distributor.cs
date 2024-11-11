@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StacjaPaliwUI
+namespace StacjaPaliwLogic.Models
 {
-    internal class Distributor
+    public class Distributor
     {
         internal int m_distributor_id;
-        internal double m_ilosc_nalane;
+        internal double m_amount_fueled;
 
-        Distributor(string typ_paliwa) { 
+        Distributor(string typ_paliwa)
+        {
 
         }
     }

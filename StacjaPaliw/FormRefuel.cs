@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using StacjaPaliwLogic.DataAccess;
+
 namespace StacjaPaliwUI
 {
     public partial class FormRefuel : Form
@@ -20,6 +22,7 @@ namespace StacjaPaliwUI
         private void FormRefuel_Load(object sender, EventArgs e)
         {
             // zaladowanie typow paliwa, cen
+            
         }
     }
 }
