@@ -8,7 +8,7 @@ namespace StacjaPaliwLogic.Models
 {
     public class Unit
     {
-        internal int unit_id;
-        internal string name;
+        public int m_id;
+        public string name;
     }
 }

@@ -8,8 +8,9 @@ namespace StacjaPaliwLogic.Models
 {
     public class Offer
     {
-        internal List<OfferChallenge> m_challenges;
-
+        public int m_id;
+        public List<OfferChallenge> m_challenges;
+        //public Offer (int id) { m_offer_id = id; }
         //public void CheckOfferEligibility()
         //{
 

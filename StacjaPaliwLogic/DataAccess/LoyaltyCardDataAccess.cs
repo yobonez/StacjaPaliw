@@ -7,29 +7,24 @@ using System.Threading.Tasks;
 
 namespace StacjaPaliwLogic.DataAccess
 {
-    public class LoyaltyCardDataAccess : IDataAccess<LoyaltyCard>
+    public class LoyaltyCardDataAccess : IDataAccess
     {
-        private List<LoyaltyCard> loyalty_cards;
-        public LoyaltyCardDataAccess()
-        {
+        private List<IDataAccess> loyalty_cards;
 
-        }
-        public List<LoyaltyCard> Load()
-        {
-            loyalty_cards = new List<LoyaltyCard>();
-            // Ladowanie z pliku tabeli
-        }
-        public LoyaltyCard Read()
-        {
-            foreach (LoyaltyCard lcard in loyalty_cards)
-            {
-                //...
-            }
-            // Oczyt pojedynczego pola z Load()'niętej zmiennej
-        }
-        public void Add(LoyaltyCard row)
+        List<IDataAccess> Load()
         {
             throw new NotImplementedException();
         }
+
+        public IDataAccess Read(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(IDataAccess row)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

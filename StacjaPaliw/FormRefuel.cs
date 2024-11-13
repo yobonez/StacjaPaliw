@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using StacjaPaliwLogic.DataAccess;
+using StacjaPaliwLogic.Models;
 
 namespace StacjaPaliwUI
 {
@@ -21,8 +22,10 @@ namespace StacjaPaliwUI
 
         private void FormRefuel_Load(object sender, EventArgs e)
         {
-            // zaladowanie typow paliwa, cen
-            
+            //IDataAccess<Offer> offerDataAccess = new OfferDataAccess();
+            //List<Offer> offers = offerDataAccess.Load();
+            //offerDataAccess.Add(new Offer());
+
         }
     }
 }

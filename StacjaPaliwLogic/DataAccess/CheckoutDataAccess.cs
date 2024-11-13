@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StacjaPaliwLogic.DataAccess
 {
-    public class CheckoutDataAccess : IDataAccess<Checkout>
+    public class CheckoutDataAccess : IDataAccess
     {
         private Checkout checkout;
 
@@ -16,17 +16,21 @@ namespace StacjaPaliwLogic.DataAccess
             
         }
 
-        public void Add(Checkout row)
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<Checkout> Load()
+        public List<IDataAccess> Load()
         {
             throw new NotImplementedException();
         }
 
         public Checkout Read()
+        {
+            throw new NotImplementedException();
+        }
+        public void Add(Checkout row)
+        {
+            throw new NotImplementedException();
+        }
+        public void Save()
         {
             throw new NotImplementedException();
         }

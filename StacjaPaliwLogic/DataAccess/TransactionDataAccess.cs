@@ -1,8 +1,10 @@
-﻿using StacjaPaliwLogic.Models;
+﻿using Newtonsoft.Json;
+using StacjaPaliwLogic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 // Transactions może kolidować z System.Transactions
@@ -18,22 +20,26 @@ namespace StacjaPaliwLogic.DataAccess
         }
         public List<Transaction> Load()
         {
-            transactions = new List<Transaction>();
-            // Ladowanie z pliku tabeli
+            transactions = JsonConvert.DeserializeObject<List<Transaction>>(File.ReadAllText(@"Transactions.json"));
+            return transactions;
         }
-        public Transaction Read()
+        public Transaction Read(int id)
         {
-            foreach (Transaction dist in transactions)
+            foreach (Transaction transaction in transactions)
             {
-                //...
+                if(transaction.m_id == id) return transaction;
             }
-            // Oczyt pojedynczego pola z Load()'niętej zmiennej
+            throw new Exception("Nie ma takiego obiektu.");
         }
         
 
         public void Add(Transaction row)
         {
-            throw new NotImplementedException();
+            transactions.Add(row);
+        }
+        public void Save()
+        {
+            File.WriteAllText(@"Transactions.json", JsonConvert.SerializeObject(transactions));
         }
     }
 }

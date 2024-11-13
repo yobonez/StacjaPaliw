@@ -1,4 +1,5 @@
-﻿using StacjaPaliwLogic.Models;
+﻿using Newtonsoft.Json;
+using StacjaPaliwLogic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +11,34 @@ namespace StacjaPaliwLogic.DataAccess
     public class OfferDataAccess : IDataAccess<Offer>
     {
         private List<Offer> offers;
+
         public OfferDataAccess()
         {
 
         }
         public List<Offer> Load()
         {
-            offers = new List<Offer>();
-            // Ladowanie z pliku tabeli
+            offers = JsonConvert.DeserializeObject<List<Offer>>(File.ReadAllText(@"Offers.json"));
+            return offers;
         }
-        public Offer Read()
+        public Offer Read(int id)
         {
-            foreach (Offer dist in offers)
+            foreach (Offer offer in offers)
             {
-                //...
+                if (offer.m_id == id) return offer;
             }
-            // Oczyt pojedynczego pola z Load()'niętej zmiennej
+            throw new Exception("Nie ma takiego obiektu.");
         }
+
+
         public void Add(Offer row)
         {
-
+            offers.Add(row);
         }
+        public void Save()
+        {
+            File.WriteAllText(@$"{this.GetType().Name}.json", JsonConvert.SerializeObject(offers));
+        }
+
     }
 }

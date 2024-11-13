@@ -8,11 +8,11 @@ namespace StacjaPaliwLogic.Models
 {
     public class LoyaltyCard
     {
-        internal int m_card_id;
-        internal string m_id_mtm_cardpromotions;
-        internal string m_name;
-        internal string m_surname;
-        internal int m_points;
+        public int m_id;
+        public string m_id_mtm_cardpromotions;
+        public string m_name;
+        public string m_surname;
+        public int m_points;
 
         //public void Register(string imie, string nazwisko) { 
         //    m_name = imie;

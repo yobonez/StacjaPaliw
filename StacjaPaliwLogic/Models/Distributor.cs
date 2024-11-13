@@ -8,8 +8,7 @@ namespace StacjaPaliwLogic.Models
 {
     public class Distributor
     {
-        internal int m_distributor_id;
-        internal double m_amount_fueled;
+        public int m_id;
 
         Distributor(string typ_paliwa)
         {

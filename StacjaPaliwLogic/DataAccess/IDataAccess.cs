@@ -8,8 +8,10 @@ namespace StacjaPaliwLogic.DataAccess
 {
     public interface IDataAccess<T>
     {
-        public List<T> Load();
-        public T Read();
-        public void Add(T row); // add + save to table
+        public List<T> GetAllRows();
+        public T ReadRow(int id);
+        public void AddRow(T row);
+        public void DeleteRow(T row);
+        public void SaveToJsonFile();
     }
 }

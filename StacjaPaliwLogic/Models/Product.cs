@@ -8,11 +8,13 @@ namespace StacjaPaliwLogic.Models
 {
     public class Product
     {
-        internal int m_product_id;
-        internal string m_name;
-        internal decimal m_price;
-        internal decimal m_discount;
-        internal int m_unit_id;
-        internal decimal m_quantity;
+        public int m_id { get; set; }
+        public string m_name { get; set; }
+        public decimal m_price { get; set; }
+        public decimal m_discount { get; set; }
+        public int m_unit_id { get; set; }
+        public decimal m_quantity { get; set; }
+
+        
     }
 }

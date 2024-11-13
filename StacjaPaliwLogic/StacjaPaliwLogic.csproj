@@ -7,4 +7,17 @@
 	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="DataAccess\CheckoutDataAccess.cs" />
+    <Compile Remove="DataAccess\DistributorDataAccess.cs" />
+    <Compile Remove="DataAccess\LoyaltyCardDataAccess.cs" />
+    <Compile Remove="DataAccess\OfferChallengeDataAccess.cs" />
+    <Compile Remove="DataAccess\OfferDataAccess.cs" />
+    <Compile Remove="DataAccess\TransactionDataAccess.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
 </Project>

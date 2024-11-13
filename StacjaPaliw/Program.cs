@@ -1,5 +1,3 @@
-using StacjaPaliwLogic.DataAccess;
-using StacjaPaliwLogic.Models;
 
 namespace StacjaPaliw
 {
@@ -15,11 +13,6 @@ namespace StacjaPaliw
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new FormWelcome());
-
-            // TODO: ogarnij se dostêp do danych, póŸniej siê martw interfejsem
-
-            //test
-            IDataAccess<Offer> offerDataAccess = new OfferDataAccess();
         }
     }
 }

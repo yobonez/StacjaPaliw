@@ -8,7 +8,8 @@ namespace StacjaPaliwLogic.Models
 {
     public class Transaction
     {
-        internal decimal m_cart_value;
+        public int m_id;
+        public decimal m_cart_value;
         //internal void ProceedTransaction() { }
     }
 }
