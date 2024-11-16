@@ -8,11 +8,23 @@ namespace StacjaPaliwLogic.Models
 {
     public class LoyaltyCard
     {
-        public int m_id;
-        public string m_id_mtm_cardpromotions;
-        public string m_name;
-        public string m_surname;
-        public int m_points;
+        public int id { get; set; }
+        public int id_mtm_cardpromotions { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
+        public int points { get; set; }
+
+        public LoyaltyCard() { }
+        public LoyaltyCard(int _id, int _id_mtm_cardpromotions, string _name, string _surname, int _points)
+        {
+            id = _id;
+            id_mtm_cardpromotions = _id_mtm_cardpromotions;
+            name = _name;
+            surname = _surname;
+            points = _points;
+        }
+
+
 
         //public void Register(string imie, string nazwisko) { 
         //    m_name = imie;

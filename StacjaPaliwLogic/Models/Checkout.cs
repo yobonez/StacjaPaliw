@@ -8,13 +8,15 @@ namespace StacjaPaliwLogic.Models
 {
     public class Checkout
     {
-        public int m_id;
-        public List<Product> m_product_list;
-        public double m_value;
+        public int id { get; set; }
+        public List<Product> product_list { get; set; }
+        public double value { get; set; }
 
-        Checkout(List<Product> lista_produktow)
+        Checkout(int _id ,List<Product> _product_list, double _value)
         {
-
+            id = _id;
+            product_list = _product_list;
+            value = _value;
         }
 
     }

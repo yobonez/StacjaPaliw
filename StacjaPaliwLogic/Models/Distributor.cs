@@ -8,8 +8,9 @@ namespace StacjaPaliwLogic.Models
 {
     public class Distributor
     {
-        public int m_id;
+        public int id;
 
+        public Distributor() { }
         Distributor(string typ_paliwa)
         {
 

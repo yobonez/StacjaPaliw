@@ -8,9 +8,11 @@ namespace StacjaPaliwLogic.Models
 {
     public class OfferChallenge
     {
-        public int m_id;
-        public int m_cmp_value;
-        public char m_cmp_equator;
+        public int id { get; set; }
+        public int cmp_value { get; set; }
+        public char cmp_equator { get; set; }
+
+        
 
         //public bool VerifyChallenge() { return false; }
     }
