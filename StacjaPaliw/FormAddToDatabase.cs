@@ -12,6 +12,16 @@ namespace StacjaPaliwUI
 {
     public partial class FormAddToDatabase : Form
     {
+        List<Control> controls;
+
+        public void ReceiveFormElements(List<Control> _controls)
+        {
+            controls = _controls;
+            foreach(Control control in controls)
+            {
+                Controls.Add(control);
+            }
+        }
         public FormAddToDatabase()
         {
             InitializeComponent();

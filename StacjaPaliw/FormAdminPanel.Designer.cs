@@ -32,10 +32,10 @@
             menuStrip1 = new MenuStrip();
             menuStrip2 = new MenuStrip();
             addToolStripMenuItem = new ToolStripMenuItem();
-            anEmployeeToolStripMenuItem = new ToolStripMenuItem();
-            aProductToolStripMenuItem = new ToolStripMenuItem();
-            aDistributorToolStripMenuItem = new ToolStripMenuItem();
             anOfferToolStripMenuItem = new ToolStripMenuItem();
+            aProductToolStripMenuItem = new ToolStripMenuItem();
+            anEmployeeToolStripMenuItem = new ToolStripMenuItem();
+            aDistributorToolStripMenuItem = new ToolStripMenuItem();
             anUnitToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip2.SuspendLayout();
@@ -53,7 +53,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Location = new Point(0, 40);
+            menuStrip1.Location = new Point(0, 42);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(712, 24);
             menuStrip1.TabIndex = 1;
@@ -65,7 +65,7 @@
             menuStrip2.Items.AddRange(new ToolStripItem[] { addToolStripMenuItem });
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
-            menuStrip2.Size = new Size(712, 40);
+            menuStrip2.Size = new Size(712, 42);
             menuStrip2.TabIndex = 2;
             menuStrip2.Text = "menuStrip2";
             // 
@@ -76,6 +76,19 @@
             addToolStripMenuItem.Size = new Size(112, 38);
             addToolStripMenuItem.Text = "Dodaj...";
             // 
+            // anOfferToolStripMenuItem
+            // 
+            anOfferToolStripMenuItem.Name = "anOfferToolStripMenuItem";
+            anOfferToolStripMenuItem.Size = new Size(359, 44);
+            anOfferToolStripMenuItem.Text = "Ofertę";
+            // 
+            // aProductToolStripMenuItem
+            // 
+            aProductToolStripMenuItem.Name = "aProductToolStripMenuItem";
+            aProductToolStripMenuItem.Size = new Size(359, 44);
+            aProductToolStripMenuItem.Text = "Produkt";
+            aProductToolStripMenuItem.Click += aProductToolStripMenuItem_Click;
+            // 
             // anEmployeeToolStripMenuItem
             // 
             anEmployeeToolStripMenuItem.Name = "anEmployeeToolStripMenuItem";
@@ -83,23 +96,11 @@
             anEmployeeToolStripMenuItem.Text = "Pracownika";
             anEmployeeToolStripMenuItem.Click += anEmployeeToolStripMenuItem_Click;
             // 
-            // aProductToolStripMenuItem
-            // 
-            aProductToolStripMenuItem.Name = "aProductToolStripMenuItem";
-            aProductToolStripMenuItem.Size = new Size(359, 44);
-            aProductToolStripMenuItem.Text = "Produkt";
-            // 
             // aDistributorToolStripMenuItem
             // 
             aDistributorToolStripMenuItem.Name = "aDistributorToolStripMenuItem";
             aDistributorToolStripMenuItem.Size = new Size(359, 44);
             aDistributorToolStripMenuItem.Text = "Dystrybutor";
-            // 
-            // anOfferToolStripMenuItem
-            // 
-            anOfferToolStripMenuItem.Name = "anOfferToolStripMenuItem";
-            anOfferToolStripMenuItem.Size = new Size(359, 44);
-            anOfferToolStripMenuItem.Text = "Ofertę";
             // 
             // anUnitToolStripMenuItem
             // 

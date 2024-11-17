@@ -22,6 +22,8 @@ namespace StacjaPaliwUI
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            bool success = false;
+
             IDataAccess<Employee> employeeDA = new DataAccess<Employee>();
             List<Employee> employees = employeeDA.GetAllRows();
             foreach (Employee employee in employees)
@@ -29,18 +31,20 @@ namespace StacjaPaliwUI
                 if(employee.nickname == textBoxLogin.Text &&
                    employee.password == textBoxPassword.Text)
                 {
+                    success = true;
+
                     FormAdminPanel adminPanel = new FormAdminPanel();
                     adminPanel.Activated += AdminPanel_Activated;
                     adminPanel.FormClosed += AdminPanel_FormClosed;
                     adminPanel.ShowDialog();
                 }
-                else
-                {
-                    MessageBox.Show("Wprowadzony login bądź hasło jest nieprawidłowe."
-                                  , "Błąd"
-                                  , MessageBoxButtons.OK
-                                  , MessageBoxIcon.Warning);
-                }
+            }
+            if (!success)
+            {
+                MessageBox.Show("Wprowadzony login bądź hasło jest nieprawidłowe."
+                              , "Błąd"
+                              , MessageBoxButtons.OK
+                              , MessageBoxIcon.Warning);
             }
         }
 
