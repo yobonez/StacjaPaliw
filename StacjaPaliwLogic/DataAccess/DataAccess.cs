@@ -81,6 +81,13 @@ namespace StacjaPaliwLogic.DataAccess
             rows.Add(row);
             _availableId++;
         }
+        public void AddRows(List<T> rows)
+        {
+            foreach (var row in rows)
+            {
+                AddRow(row);
+            }
+        }
         public void DeleteRow(int id)
         {
             var idProperty = typeof(T).GetProperty("id");

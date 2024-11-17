@@ -18,6 +18,12 @@ namespace StacjaPaliwUI
         public FormRefuel()
         {
             InitializeComponent();
+            //IDataAccess<FuelProduct> prodFuelDA = new DataAccess<FuelProduct>();
+            //IDataAccess<Product> prodDA = new DataAccess<Product>();
+            
+            //List<FuelProduct> fuelProductIdentifiers = prodFuelDA.GetAllRows();
+            //List<Product> fuelProducts = prodDA.GetAllRows();
+            
         }
 
         private void FormRefuel_Load(object sender, EventArgs e)

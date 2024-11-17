@@ -30,5 +30,12 @@ namespace StacjaPaliw
         {
             toolStripStatusLabelCurrentDateTime.Text = DateTime.Now.ToLongTimeString();
         }
+
+        private void adminPanelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormLogon logonForm = new FormLogon();
+            logonForm.ShowDialog();
+        }
+
     }
 }

@@ -36,13 +36,17 @@
             toolStripStatusLabelCurrentDateTime = new ToolStripStatusLabel();
             helpProvider1 = new HelpProvider();
             timerCurrentDateTime = new System.Windows.Forms.Timer(components);
+            menuStrip1 = new MenuStrip();
+            optionsToolStripMenuItem = new ToolStripMenuItem();
+            adminPanelToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // buttonRefuel
             // 
             buttonRefuel.Location = new Point(85, 149);
-            buttonRefuel.Margin = new Padding(6, 6, 6, 6);
+            buttonRefuel.Margin = new Padding(6);
             buttonRefuel.Name = "buttonRefuel";
             buttonRefuel.Size = new Size(139, 49);
             buttonRefuel.TabIndex = 0;
@@ -53,7 +57,7 @@
             // buttonShop
             // 
             buttonShop.Location = new Point(327, 149);
-            buttonShop.Margin = new Padding(6, 6, 6, 6);
+            buttonShop.Margin = new Padding(6);
             buttonShop.Name = "buttonShop";
             buttonShop.Size = new Size(139, 49);
             buttonShop.TabIndex = 1;
@@ -92,6 +96,30 @@
             // 
             timerCurrentDateTime.Tick += timerCurrentDateTime_Tick;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(32, 32);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { optionsToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(550, 42);
+            menuStrip1.TabIndex = 4;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { adminPanelToolStripMenuItem });
+            optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            optionsToolStripMenuItem.Size = new Size(96, 38);
+            optionsToolStripMenuItem.Text = "Opcje";
+            // 
+            // adminPanelToolStripMenuItem
+            // 
+            adminPanelToolStripMenuItem.Name = "adminPanelToolStripMenuItem";
+            adminPanelToolStripMenuItem.Size = new Size(377, 44);
+            adminPanelToolStripMenuItem.Text = "Panel administracyjny";
+            adminPanelToolStripMenuItem.Click += adminPanelToolStripMenuItem_Click;
+            // 
             // FormWelcome
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -100,16 +128,20 @@
             ClientSize = new Size(550, 324);
             Controls.Add(buttonRefuel);
             Controls.Add(statusStrip1);
+            Controls.Add(menuStrip1);
             Controls.Add(labelWelcome);
             Controls.Add(buttonShop);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(6, 6, 6, 6);
+            MainMenuStrip = menuStrip1;
+            Margin = new Padding(6);
             MaximizeBox = false;
             Name = "FormWelcome";
             Text = "Ekran powitalny";
             Load += FormWelcome_Load;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,5 +155,8 @@
         private ToolStripStatusLabel toolStripStatusLabelCurrentDateTime;
         private HelpProvider helpProvider1;
         private System.Windows.Forms.Timer timerCurrentDateTime;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem optionsToolStripMenuItem;
+        private ToolStripMenuItem adminPanelToolStripMenuItem;
     }
 }

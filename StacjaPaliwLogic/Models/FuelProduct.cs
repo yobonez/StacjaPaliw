@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace StacjaPaliwLogic.Models
 {
-    public class Distributor
+    public class FuelProduct
     {
         public int id { get; set; }
         public int fuel_product_id { get; set; }
-
-        public Distributor() { }
     }
 }
