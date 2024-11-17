@@ -37,7 +37,7 @@
             anEmployeeToolStripMenuItem = new ToolStripMenuItem();
             aDistributorToolStripMenuItem = new ToolStripMenuItem();
             anUnitToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
+            loyaltyCardToolStripMenuItem = new ToolStripMenuItem();
             menuStrip2.SuspendLayout();
             SuspendLayout();
             // 
@@ -71,7 +71,7 @@
             // 
             // addToolStripMenuItem
             // 
-            addToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anOfferToolStripMenuItem, aProductToolStripMenuItem, anEmployeeToolStripMenuItem, aDistributorToolStripMenuItem, anUnitToolStripMenuItem, toolStripMenuItem1 });
+            addToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anOfferToolStripMenuItem, aProductToolStripMenuItem, anEmployeeToolStripMenuItem, aDistributorToolStripMenuItem, anUnitToolStripMenuItem, loyaltyCardToolStripMenuItem });
             addToolStripMenuItem.Name = "addToolStripMenuItem";
             addToolStripMenuItem.Size = new Size(112, 38);
             addToolStripMenuItem.Text = "Dodaj...";
@@ -108,10 +108,12 @@
             anUnitToolStripMenuItem.Size = new Size(359, 44);
             anUnitToolStripMenuItem.Text = "Jednostkę";
             // 
-            // toolStripMenuItem1
+            // loyaltyCardToolStripMenuItem
             // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(359, 44);
+            loyaltyCardToolStripMenuItem.Name = "loyaltyCardToolStripMenuItem";
+            loyaltyCardToolStripMenuItem.Size = new Size(359, 44);
+            loyaltyCardToolStripMenuItem.Text = "Kartę lojalnościową";
+            loyaltyCardToolStripMenuItem.Click += loyaltyCardToolStripMenuItem_Click;
             // 
             // FormAdminPanel
             // 
@@ -142,6 +144,6 @@
         private ToolStripMenuItem aDistributorToolStripMenuItem;
         private ToolStripMenuItem anOfferToolStripMenuItem;
         private ToolStripMenuItem anUnitToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem loyaltyCardToolStripMenuItem;
     }
 }

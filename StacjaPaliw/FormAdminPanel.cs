@@ -14,8 +14,9 @@ namespace StacjaPaliwUI
 {
     public partial class FormAdminPanel : Form
     {
-        PropertyInfo[] propInfo;
         string windowName;
+
+        PropertyInfo[] propInfo;
         List<Control> controls;
         FormAddToDatabase addToDatabase;
 
@@ -26,6 +27,8 @@ namespace StacjaPaliwUI
 
         private void populateFormElements(object? sender, EventArgs e)
         {
+            //int windowHeight = 0;
+
             int locX = 50;
             int locY = 150;
 
@@ -52,11 +55,11 @@ namespace StacjaPaliwUI
                 });
                 controls.Add(new TextBox()
                 {
-                    Location = new Point(locX + 200, locY),
+                    Location = new Point(locX + 250, locY),
                     TabIndex = tabIndex,
                     Size = new Size(200, 50)
                 });
-                locY += 50;
+                locY += 75;
                 tabIndex++;
             }
             addToDatabase.ReceiveFormElements(controls);
@@ -84,6 +87,13 @@ namespace StacjaPaliwUI
             windowName = "Dodaj produkt";
 
             InitializeDbAddWindow(typeof(Product));
+        }
+
+        private void loyaltyCardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            windowName = "Dodaj kartę lojalnościową";
+
+            InitializeDbAddWindow(typeof(LoyaltyCard));
         }
     }
 }

@@ -29,13 +29,35 @@
         private void InitializeComponent()
         {
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            buttonAdd = new Button();
+            buttonCancel = new Button();
             SuspendLayout();
+            // 
+            // buttonAdd
+            // 
+            buttonAdd.Location = new Point(40, 379);
+            buttonAdd.Name = "buttonAdd";
+            buttonAdd.Size = new Size(150, 46);
+            buttonAdd.TabIndex = 0;
+            buttonAdd.Text = "Dodaj";
+            buttonAdd.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancel
+            // 
+            buttonCancel.Location = new Point(206, 379);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new Size(150, 46);
+            buttonCancel.TabIndex = 1;
+            buttonCancel.Text = "Anuluj";
+            buttonCancel.UseVisualStyleBackColor = true;
             // 
             // FormAddToDatabase
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonCancel);
+            Controls.Add(buttonAdd);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormAddToDatabase";
             Text = "Dodaj [coś]";
@@ -45,5 +67,7 @@
         #endregion
 
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Button buttonAdd;
+        private Button buttonCancel;
     }
 }
