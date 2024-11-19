@@ -81,6 +81,7 @@
             anOfferToolStripMenuItem.Name = "anOfferToolStripMenuItem";
             anOfferToolStripMenuItem.Size = new Size(359, 44);
             anOfferToolStripMenuItem.Text = "Ofertę";
+            anOfferToolStripMenuItem.Click += anOfferToolStripMenuItem_Click;
             // 
             // aProductToolStripMenuItem
             // 

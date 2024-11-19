@@ -9,13 +9,10 @@ namespace StacjaPaliwLogic.Models
     public class Offer
     {
         public int id { get; set; }
-        public List<OfferChallenge> challenges { get; set; }
-
         public Offer() { }
-        public Offer(int id, List<OfferChallenge> challenges)
+        public Offer(int _id)
         {
-            id = id;
-            challenges = challenges;
+            id = _id;
         }
 
         //public Offer (int id) { m_offer_id = id; }

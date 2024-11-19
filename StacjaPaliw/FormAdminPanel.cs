@@ -108,5 +108,12 @@ namespace StacjaPaliwUI
 
             InitializeDbAddWindow(typeof(LoyaltyCard), new LoyaltyCard(), propInfo);
         }
+
+        private void anOfferToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            windowName = "Dodaj ofertę";
+
+            InitializeDbAddWindow(typeof(Offer), new Offer(), propInfo);
+        }
     }
 }
