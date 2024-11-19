@@ -41,6 +41,7 @@
             buttonAdd.TabIndex = 0;
             buttonAdd.Text = "Dodaj";
             buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.Click += buttonAdd_Click;
             // 
             // buttonCancel
             // 

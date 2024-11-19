@@ -17,8 +17,12 @@ namespace StacjaPaliwUI
         string windowName;
 
         PropertyInfo[] propInfo;
+        object model;
+
         List<Control> controls;
         FormAddToDatabase addToDatabase;
+
+        bool formPopulated = false;
 
         public FormAdminPanel()
         {
@@ -27,6 +31,7 @@ namespace StacjaPaliwUI
 
         private void populateFormElements(object? sender, EventArgs e)
         {
+            if (formPopulated) { return; }
             //int windowHeight = 0;
 
             int locX = 50;
@@ -62,15 +67,23 @@ namespace StacjaPaliwUI
                 locY += 75;
                 tabIndex++;
             }
-            addToDatabase.ReceiveFormElements(controls);
+            formPopulated = true;
+            addToDatabase.ReceiveFormElements(controls, model);
         }
 
-        private void InitializeDbAddWindow(Type _type)
+        public void enablePopulating(object? sender, EventArgs e)
         {
+            formPopulated = false;
+        }
+
+        private void InitializeDbAddWindow(Type _type, object _model, PropertyInfo[] propertyInfo)
+        {
+            model = _model;
             addToDatabase = new FormAddToDatabase();
 
             propInfo = _type.GetProperties();
             addToDatabase.Activated += populateFormElements;
+            addToDatabase.FormClosed += enablePopulating;
 
             addToDatabase.ShowDialog();
         }
@@ -79,21 +92,21 @@ namespace StacjaPaliwUI
         {
             windowName = "Dodaj pracownika";
 
-            InitializeDbAddWindow(typeof(Employee));
+            InitializeDbAddWindow(typeof(Employee), new Employee(), propInfo);
         }
 
         private void aProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
             windowName = "Dodaj produkt";
 
-            InitializeDbAddWindow(typeof(Product));
+            InitializeDbAddWindow(typeof(Product), new Product(), propInfo);
         }
 
         private void loyaltyCardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             windowName = "Dodaj kartę lojalnościową";
 
-            InitializeDbAddWindow(typeof(LoyaltyCard));
+            InitializeDbAddWindow(typeof(LoyaltyCard), new LoyaltyCard(), propInfo);
         }
     }
 }
