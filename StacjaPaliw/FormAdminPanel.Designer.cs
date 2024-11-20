@@ -38,6 +38,7 @@
             aDistributorToolStripMenuItem = new ToolStripMenuItem();
             anUnitToolStripMenuItem = new ToolStripMenuItem();
             loyaltyCardToolStripMenuItem = new ToolStripMenuItem();
+            oznaczenieProduktuJakoPaliwoToolStripMenuItem = new ToolStripMenuItem();
             menuStrip2.SuspendLayout();
             SuspendLayout();
             // 
@@ -71,7 +72,7 @@
             // 
             // addToolStripMenuItem
             // 
-            addToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anOfferToolStripMenuItem, aProductToolStripMenuItem, anEmployeeToolStripMenuItem, aDistributorToolStripMenuItem, anUnitToolStripMenuItem, loyaltyCardToolStripMenuItem });
+            addToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anOfferToolStripMenuItem, aProductToolStripMenuItem, anEmployeeToolStripMenuItem, aDistributorToolStripMenuItem, anUnitToolStripMenuItem, loyaltyCardToolStripMenuItem, oznaczenieProduktuJakoPaliwoToolStripMenuItem });
             addToolStripMenuItem.Name = "addToolStripMenuItem";
             addToolStripMenuItem.Size = new Size(112, 38);
             addToolStripMenuItem.Text = "Dodaj...";
@@ -79,42 +80,50 @@
             // anOfferToolStripMenuItem
             // 
             anOfferToolStripMenuItem.Name = "anOfferToolStripMenuItem";
-            anOfferToolStripMenuItem.Size = new Size(359, 44);
+            anOfferToolStripMenuItem.Size = new Size(502, 44);
             anOfferToolStripMenuItem.Text = "Ofertę";
             anOfferToolStripMenuItem.Click += anOfferToolStripMenuItem_Click;
             // 
             // aProductToolStripMenuItem
             // 
             aProductToolStripMenuItem.Name = "aProductToolStripMenuItem";
-            aProductToolStripMenuItem.Size = new Size(359, 44);
+            aProductToolStripMenuItem.Size = new Size(502, 44);
             aProductToolStripMenuItem.Text = "Produkt";
             aProductToolStripMenuItem.Click += aProductToolStripMenuItem_Click;
             // 
             // anEmployeeToolStripMenuItem
             // 
             anEmployeeToolStripMenuItem.Name = "anEmployeeToolStripMenuItem";
-            anEmployeeToolStripMenuItem.Size = new Size(359, 44);
+            anEmployeeToolStripMenuItem.Size = new Size(502, 44);
             anEmployeeToolStripMenuItem.Text = "Pracownika";
             anEmployeeToolStripMenuItem.Click += anEmployeeToolStripMenuItem_Click;
             // 
             // aDistributorToolStripMenuItem
             // 
             aDistributorToolStripMenuItem.Name = "aDistributorToolStripMenuItem";
-            aDistributorToolStripMenuItem.Size = new Size(359, 44);
+            aDistributorToolStripMenuItem.Size = new Size(502, 44);
             aDistributorToolStripMenuItem.Text = "Dystrybutor";
             // 
             // anUnitToolStripMenuItem
             // 
             anUnitToolStripMenuItem.Name = "anUnitToolStripMenuItem";
-            anUnitToolStripMenuItem.Size = new Size(359, 44);
+            anUnitToolStripMenuItem.Size = new Size(502, 44);
             anUnitToolStripMenuItem.Text = "Jednostkę";
+            anUnitToolStripMenuItem.Click += anUnitToolStripMenuItem_Click;
             // 
             // loyaltyCardToolStripMenuItem
             // 
             loyaltyCardToolStripMenuItem.Name = "loyaltyCardToolStripMenuItem";
-            loyaltyCardToolStripMenuItem.Size = new Size(359, 44);
+            loyaltyCardToolStripMenuItem.Size = new Size(502, 44);
             loyaltyCardToolStripMenuItem.Text = "Kartę lojalnościową";
             loyaltyCardToolStripMenuItem.Click += loyaltyCardToolStripMenuItem_Click;
+            // 
+            // oznaczenieProduktuJakoPaliwoToolStripMenuItem
+            // 
+            oznaczenieProduktuJakoPaliwoToolStripMenuItem.Name = "oznaczenieProduktuJakoPaliwoToolStripMenuItem";
+            oznaczenieProduktuJakoPaliwoToolStripMenuItem.Size = new Size(502, 44);
+            oznaczenieProduktuJakoPaliwoToolStripMenuItem.Text = "Oznaczenie produktu jako paliwo";
+            oznaczenieProduktuJakoPaliwoToolStripMenuItem.Click += oznaczenieProduktuJakoPaliwoToolStripMenuItem_Click;
             // 
             // FormAdminPanel
             // 
@@ -146,5 +155,6 @@
         private ToolStripMenuItem anOfferToolStripMenuItem;
         private ToolStripMenuItem anUnitToolStripMenuItem;
         private ToolStripMenuItem loyaltyCardToolStripMenuItem;
+        private ToolStripMenuItem oznaczenieProduktuJakoPaliwoToolStripMenuItem;
     }
 }

@@ -1,9 +1,11 @@
 using StacjaPaliwUI;
+using System.Security.Policy;
 
 namespace StacjaPaliw
 {
     public partial class FormWelcome : Form
     {
+        bool firstTime = true;
         public FormWelcome()
         {
             InitializeComponent();
@@ -17,7 +19,8 @@ namespace StacjaPaliw
 
         private void buttonRefuel_Click(object sender, EventArgs e)
         {
-            Form refuelForm = new FormRefuel();
+            Form refuelForm = new FormRefuel(firstTime);
+            firstTime = false;
             refuelForm.ShowDialog();
         }
 
@@ -34,7 +37,7 @@ namespace StacjaPaliw
         private void adminPanelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormLogon logonForm = new FormLogon();
-            logonForm.ShowDialog();
+            logonForm.Show();
         }
 
     }

@@ -10,11 +10,11 @@ namespace StacjaPaliwLogic.Models
     {
         public int id { get; set; }
         public int offer_id { get; set; }
-        public int cmp_value { get; set; }
+        public Decimal cmp_value { get; set; }
         public char cmp_equator { get; set; }
-
+        
         public OfferChallenge() { }
-        public OfferChallenge(int _id, int _offer_id, int _cmp_value, char _cmp_equator)
+        public OfferChallenge(int _id, int _offer_id, Decimal _cmp_value, char _cmp_equator)
         {
             id = _id;
             offer_id = _offer_id;

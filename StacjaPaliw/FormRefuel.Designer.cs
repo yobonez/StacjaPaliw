@@ -30,24 +30,27 @@
         {
             components = new System.ComponentModel.Container();
             comboBoxFuelType = new ComboBox();
+            productBindingSource = new BindingSource(components);
             labelWelcome = new Label();
             labelFuelType = new Label();
             statusStrip1 = new StatusStrip();
             groupBox1 = new GroupBox();
-            label2 = new Label();
+            labelLiters = new Label();
             groupBox2 = new GroupBox();
-            label3 = new Label();
+            labelValue = new Label();
             label1 = new Label();
             groupBoxPrice = new GroupBox();
             labelPrice = new Label();
             buttonRefuelling = new Button();
             bindingSourceRefuel = new BindingSource(components);
-            productBindingSource = new BindingSource(components);
+            timerFuelTick = new System.Windows.Forms.Timer(components);
+            buttonPutBackPistol = new Button();
+            buttonClose = new Button();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBoxPrice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRefuel).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             SuspendLayout();
             // 
             // comboBoxFuelType
@@ -59,6 +62,11 @@
             comboBoxFuelType.Name = "comboBoxFuelType";
             comboBoxFuelType.Size = new Size(221, 40);
             comboBoxFuelType.TabIndex = 0;
+            comboBoxFuelType.SelectedIndexChanged += comboBoxFuelType_SelectedIndexChanged;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(StacjaPaliwLogic.Models.Product);
             // 
             // labelWelcome
             // 
@@ -84,7 +92,7 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(32, 32);
-            statusStrip1.Location = new Point(0, 712);
+            statusStrip1.Location = new Point(0, 732);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(2, 0, 26, 0);
             statusStrip1.Size = new Size(505, 22);
@@ -93,7 +101,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(labelLiters);
             groupBox1.Location = new Point(22, 267);
             groupBox1.Margin = new Padding(6);
             groupBox1.Name = "groupBox1";
@@ -103,20 +111,20 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "dm^3/litry";
             // 
-            // label2
+            // labelLiters
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label2.Location = new Point(11, 41);
-            label2.Margin = new Padding(6, 0, 6, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(183, 72);
-            label2.TabIndex = 1;
-            label2.Text = "0,00 zł";
+            labelLiters.AutoSize = true;
+            labelLiters.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            labelLiters.Location = new Point(11, 41);
+            labelLiters.Margin = new Padding(6, 0, 6, 0);
+            labelLiters.Name = "labelLiters";
+            labelLiters.Size = new Size(183, 72);
+            labelLiters.TabIndex = 1;
+            labelLiters.Text = "0,00 zł";
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(label3);
+            groupBox2.Controls.Add(labelValue);
             groupBox2.Location = new Point(22, 420);
             groupBox2.Margin = new Padding(6);
             groupBox2.Name = "groupBox2";
@@ -126,16 +134,16 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Należność (zł)";
             // 
-            // label3
+            // labelValue
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label3.Location = new Point(11, 41);
-            label3.Margin = new Padding(6, 0, 6, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(183, 72);
-            label3.TabIndex = 2;
-            label3.Text = "0,00 zł";
+            labelValue.AutoSize = true;
+            labelValue.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            labelValue.Location = new Point(11, 41);
+            labelValue.Margin = new Padding(6, 0, 6, 0);
+            labelValue.Name = "labelValue";
+            labelValue.Size = new Size(183, 72);
+            labelValue.TabIndex = 2;
+            labelValue.Text = "0,00 zł";
             // 
             // label1
             // 
@@ -175,20 +183,42 @@
             buttonRefuelling.Location = new Point(22, 593);
             buttonRefuelling.Margin = new Padding(6);
             buttonRefuelling.Name = "buttonRefuelling";
-            buttonRefuelling.Size = new Size(232, 49);
+            buttonRefuelling.Size = new Size(222, 49);
             buttonRefuelling.TabIndex = 9;
-            buttonRefuelling.Text = "Tankuj (trzymaj)";
+            buttonRefuelling.Text = "Podnieś pistolet";
             buttonRefuelling.UseVisualStyleBackColor = true;
+            buttonRefuelling.Click += buttonRefuelling_Click;
+            buttonRefuelling.MouseDown += buttonRefuelling_MouseDown;
+            buttonRefuelling.MouseUp += buttonRefuelling_MouseUp;
             // 
-            // productBindingSource
+            // buttonPutBackPistol
             // 
-            productBindingSource.DataSource = typeof(StacjaPaliwLogic.Models.Product);
+            buttonPutBackPistol.Location = new Point(264, 593);
+            buttonPutBackPistol.Margin = new Padding(6);
+            buttonPutBackPistol.Name = "buttonPutBackPistol";
+            buttonPutBackPistol.Size = new Size(220, 49);
+            buttonPutBackPistol.TabIndex = 10;
+            buttonPutBackPistol.Text = "Odłóż pistolet";
+            buttonPutBackPistol.UseVisualStyleBackColor = true;
+            buttonPutBackPistol.Click += buttonPutBackPistol_Click;
+            // 
+            // buttonClose
+            // 
+            buttonClose.Location = new Point(22, 666);
+            buttonClose.Name = "buttonClose";
+            buttonClose.Size = new Size(462, 46);
+            buttonClose.TabIndex = 11;
+            buttonClose.Text = "Zamknij";
+            buttonClose.UseVisualStyleBackColor = true;
+            buttonClose.Click += buttonClose_Click;
             // 
             // FormRefuel
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(505, 734);
+            ClientSize = new Size(505, 754);
+            Controls.Add(buttonClose);
+            Controls.Add(buttonPutBackPistol);
             Controls.Add(buttonRefuelling);
             Controls.Add(groupBoxPrice);
             Controls.Add(label1);
@@ -203,6 +233,7 @@
             Name = "FormRefuel";
             Text = "Tankowanie";
             Load += FormRefuel_Load;
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -210,7 +241,6 @@
             groupBoxPrice.ResumeLayout(false);
             groupBoxPrice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRefuel).EndInit();
-            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,12 +254,15 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Label label1;
-        private Label label2;
+        private Label labelLiters;
         private GroupBox groupBoxPrice;
         private Label labelPrice;
-        private Label label3;
+        private Label labelValue;
         private Button buttonRefuelling;
         private BindingSource bindingSourceRefuel;
         private BindingSource productBindingSource;
+        private System.Windows.Forms.Timer timerFuelTick;
+        private Button buttonPutBackPistol;
+        private Button buttonClose;
     }
 }

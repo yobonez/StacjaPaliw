@@ -32,6 +32,7 @@ namespace StacjaPaliwUI
         private void populateFormElements(object? sender, EventArgs e)
         {
             if (formPopulated) { return; }
+            // TODO: if its offer then add more stuff etc itk lol
             //int windowHeight = 0;
 
             int locX = 50;
@@ -114,6 +115,20 @@ namespace StacjaPaliwUI
             windowName = "Dodaj ofertę";
 
             InitializeDbAddWindow(typeof(Offer), new Offer(), propInfo);
+        }
+
+        private void oznaczenieProduktuJakoPaliwoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            windowName = "Oznacz id produktu jako paliwo";
+
+            InitializeDbAddWindow(typeof(FuelProduct), new FuelProduct(), propInfo);
+        }
+
+        private void anUnitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            windowName = "Dodaj jednostkę";
+
+            InitializeDbAddWindow(typeof(Unit), new Unit(), propInfo);
         }
     }
 }

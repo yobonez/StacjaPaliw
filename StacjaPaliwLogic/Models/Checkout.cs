@@ -9,14 +9,17 @@ namespace StacjaPaliwLogic.Models
     public class Checkout
     {
         public int id { get; set; }
-        public List<Product> product_list { get; set; }
-        public double value { get; set; }
-
-        Checkout(int _id ,List<Product> _product_list, double _value)
+        public int product_id { get; set; }
+        public Decimal amount { get; set; }
+        public Decimal discount { get; set; }
+        
+        public Checkout() { }
+        public Checkout(int _id, int _product_id, Decimal _amount, Decimal _discount)
         {
             id = _id;
-            product_list = _product_list;
-            value = _value;
+            product_id = _product_id;
+            amount = _amount;
+            discount = _discount;
         }
 
     }

@@ -9,7 +9,7 @@ namespace StacjaPaliwLogic.Models
     public class Transaction
     {
         public int id { get; set; }
-        public decimal cart_value { get; set; }
+        public Decimal cart_value { get; set; }
 
         public Transaction() { }
         public Transaction(int _id, decimal _cart_value)
