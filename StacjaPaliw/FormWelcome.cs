@@ -5,7 +5,6 @@ namespace StacjaPaliw
 {
     public partial class FormWelcome : Form
     {
-        bool firstTime = true;
         public FormWelcome()
         {
             InitializeComponent();
@@ -19,8 +18,7 @@ namespace StacjaPaliw
 
         private void buttonRefuel_Click(object sender, EventArgs e)
         {
-            Form refuelForm = new FormRefuel(firstTime);
-            firstTime = false;
+            Form refuelForm = new FormRefuel();
             refuelForm.ShowDialog();
         }
 
@@ -40,5 +38,10 @@ namespace StacjaPaliw
             logonForm.Show();
         }
 
+        private void buttonShop_Click(object sender, EventArgs e)
+        {
+            FormShop shopForm = new FormShop();
+            shopForm.Show();
+        }
     }
 }

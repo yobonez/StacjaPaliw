@@ -12,9 +12,8 @@ namespace StacjaPaliwLogic.Models
         public string name { get; set; }
 
         public Unit() { }
-        public Unit(int _id, string _name)
+        public Unit(string _name)
         {
-            id = _id;
             name = _name;
         }
     }

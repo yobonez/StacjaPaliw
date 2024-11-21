@@ -118,9 +118,9 @@
             labelLiters.Location = new Point(11, 41);
             labelLiters.Margin = new Padding(6, 0, 6, 0);
             labelLiters.Name = "labelLiters";
-            labelLiters.Size = new Size(183, 72);
+            labelLiters.Size = new Size(157, 72);
             labelLiters.TabIndex = 1;
-            labelLiters.Text = "0,00 zł";
+            labelLiters.Text = "0,00 l";
             // 
             // groupBox2
             // 

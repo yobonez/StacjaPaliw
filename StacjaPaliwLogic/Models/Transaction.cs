@@ -9,13 +9,16 @@ namespace StacjaPaliwLogic.Models
     public class Transaction
     {
         public int id { get; set; }
-        public Decimal cart_value { get; set; }
+        private Decimal _value;
+        public Decimal value {
+            get { return _value; }
+            set { _value = Math.Round(value, 2); }
+        }
 
         public Transaction() { }
-        public Transaction(int _id, decimal _cart_value)
+        public Transaction(decimal _value)
         {
-            id = _id;
-            cart_value = _cart_value;
+            value = _value;
         }
 
 

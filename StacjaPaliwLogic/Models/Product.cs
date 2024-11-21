@@ -12,7 +12,11 @@ namespace StacjaPaliwLogic.Models
     {
         public int id { get; set; }
         public string name { get; set; }
-        public Decimal price { get; set; }
+        private Decimal _price;
+        public Decimal price {
+            get { return _price; }
+            set { _price = Math.Round(value, 2); }
+        }
         public int unit_id { get; set; }
 
         public Product() { }

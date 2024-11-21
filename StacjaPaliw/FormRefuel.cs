@@ -48,7 +48,7 @@ namespace StacjaPaliwUI
             if (ActiveForm == this && fuelLock)
             {
                 fuelAmount += byWhatAmount;
-                labelLiters.Text = fuelAmount.ToString() + " zł";
+                labelLiters.Text = fuelAmount.ToString() + " l";
 
                 fuelValue = Math.Round(fuelAmount * selectedFuel.price, 2);
                 labelValue.Text = fuelValue.ToString() + " zł";
@@ -121,8 +121,8 @@ namespace StacjaPaliwUI
             fuelLock = false;
             lockOrUnlockFuelControls();
 
-            // TODO: STACJA STATUS - hold the checkout here and all its products
-            // add this fuel stuff to checkout
+            TransactionItem transactionItem = new TransactionItem(selectedFuel.id, selectedFuel.price, fuelAmount, 0m); // discount on checkout, not here
+            StacjaPaliwStatus.transactionItems.Add(transactionItem);
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

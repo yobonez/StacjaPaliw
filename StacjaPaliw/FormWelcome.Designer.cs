@@ -63,6 +63,7 @@
             buttonShop.TabIndex = 1;
             buttonShop.Text = "Sklep";
             buttonShop.UseVisualStyleBackColor = true;
+            buttonShop.Click += buttonShop_Click;
             // 
             // labelWelcome
             // 
@@ -102,7 +103,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { optionsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(550, 42);
+            menuStrip1.Size = new Size(550, 40);
             menuStrip1.TabIndex = 4;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -110,7 +111,7 @@
             // 
             optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { adminPanelToolStripMenuItem });
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            optionsToolStripMenuItem.Size = new Size(96, 38);
+            optionsToolStripMenuItem.Size = new Size(96, 36);
             optionsToolStripMenuItem.Text = "Opcje";
             // 
             // adminPanelToolStripMenuItem
