@@ -16,7 +16,7 @@ namespace StacjaPaliwUI
     public partial class FormShop : Form
     {
         List<UCProduct> uiProducts = new List<UCProduct>();
-            
+
         public FormShop()
         {
             InitializeComponent();
@@ -33,14 +33,18 @@ namespace StacjaPaliwUI
             }
         }
 
+        private void addProductToCheckout()
+        {
+
+        }
+
         private void FormShop_Load(object sender, EventArgs e)
         {
             IDataAccess<Product> prodDA = new DataAccess<Product>();
-            List<Product> productsToAdd = prodDA.GetAllRows();
+            List<Product> productsToAdd = prodDA.GetAllRows().ToList();
 
             IDataAccess<FuelProduct> fuelProdDA = new DataAccess<FuelProduct>();
             List<FuelProduct> fuelProducts = fuelProdDA.GetAllRows();
-
 
             // remove products that are fuels
             for (int i = 0; i < productsToAdd.Count; i++)
@@ -58,7 +62,7 @@ namespace StacjaPaliwUI
 
             foreach (TransactionItem transactionItem in StacjaPaliwStatus.transactionItems)
             {
-                foreach(FuelProduct fuelProd in fuelProducts)
+                foreach (FuelProduct fuelProd in fuelProducts)
                 {
                     if (transactionItem.product_id == fuelProd.fuel_product_id)
                     {
@@ -77,6 +81,22 @@ namespace StacjaPaliwUI
             }
 
             placeProducts();
+
+            //var transactionDetails = StacjaPaliwStatus.transactionItems.Join(
+            //    prodDA.GetAllRows(),
+            //    trans => trans.product_id,
+            //    prod => prod.id,
+            //    (trans, prod) => new
+            //    {
+            //        prod.name,
+            //        trans.price_per_unit,
+            //        trans.unit_amount,
+            //        value = Math.Round(trans.price_per_unit * trans.unit_amount, 2)
+            //    }).ToList();
+
+            // ^^^ komplikowanie, zrób se normalnie stałe pola w databinding jakiś albo coś i essa
+            //dataGridViewTransactionItems.DataSource = transactionDetails;
+
         }
     }
 }

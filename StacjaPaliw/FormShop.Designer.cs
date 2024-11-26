@@ -28,62 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            labelCartValue = new Label();
-            buttonPay = new Button();
-            panel1 = new Panel();
-            panel1.SuspendLayout();
+            dataGridViewTransactionItems = new DataGridView();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTransactionItems).BeginInit();
             SuspendLayout();
             // 
-            // labelCartValue
+            // dataGridViewTransactionItems
             // 
-            labelCartValue.AutoSize = true;
-            labelCartValue.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            labelCartValue.Location = new Point(6, 15);
-            labelCartValue.Margin = new Padding(6, 0, 6, 0);
-            labelCartValue.Name = "labelCartValue";
-            labelCartValue.Size = new Size(261, 45);
-            labelCartValue.TabIndex = 0;
-            labelCartValue.Text = "Wartość koszyka:";
-            labelCartValue.TextAlign = ContentAlignment.BottomRight;
+            dataGridViewTransactionItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewTransactionItems.Location = new Point(642, 438);
+            dataGridViewTransactionItems.Name = "dataGridViewTransactionItems";
+            dataGridViewTransactionItems.RowHeadersWidth = 82;
+            dataGridViewTransactionItems.RowTemplate.Height = 30;
+            dataGridViewTransactionItems.Size = new Size(736, 275);
+            dataGridViewTransactionItems.TabIndex = 3;
             // 
-            // buttonPay
+            // label1
             // 
-            buttonPay.Location = new Point(215, 171);
-            buttonPay.Margin = new Padding(6);
-            buttonPay.Name = "buttonPay";
-            buttonPay.Size = new Size(286, 83);
-            buttonPay.TabIndex = 1;
-            buttonPay.Text = "Zapłać";
-            buttonPay.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(labelCartValue);
-            panel1.Controls.Add(buttonPay);
-            panel1.Location = new Point(672, 469);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(545, 266);
-            panel1.TabIndex = 2;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label1.Location = new Point(642, 726);
+            label1.Margin = new Padding(6, 0, 6, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(236, 45);
+            label1.TabIndex = 0;
+            label1.Text = "Podsumowanie";
+            label1.TextAlign = ContentAlignment.BottomRight;
             // 
             // FormShop
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1229, 747);
-            Controls.Add(panel1);
+            ClientSize = new Size(1390, 864);
+            Controls.Add(dataGridViewTransactionItems);
+            Controls.Add(label1);
             Margin = new Padding(6);
             Name = "FormShop";
             Text = "FormShop";
             Load += FormShop_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTransactionItems).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Label labelCartValue;
-        private Button buttonPay;
-        private Panel panel1;
+        private DataGridView dataGridViewTransactionItems;
+        private Label label1;
     }
 }
