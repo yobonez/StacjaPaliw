@@ -36,7 +36,7 @@ namespace StacjaPaliwUI
             comboBoxFuelType.ValueMember = "id";
             foreach (FuelProduct fuelprod in fuelProdDA.GetAllRows())
             {
-                Product fuelToAdd = prodDA.ReadRow(fuelprod.id);
+                Product fuelToAdd = prodDA.ReadRow(fuelprod.fuel_product_id);
                 comboBoxFuelType.Items.Add(fuelToAdd);
             }
 

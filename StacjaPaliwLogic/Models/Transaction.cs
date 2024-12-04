@@ -20,8 +20,5 @@ namespace StacjaPaliwLogic.Models
         {
             value = _value;
         }
-
-
-        //internal void ProceedTransaction() { }
     }
 }

@@ -164,6 +164,7 @@ namespace StacjaPaliwLogic.DataAccess
             }
             else
             {
+                //File.AppendAllText
                 using (FileStream fs = File.Create(_tableFilePath))
                 {
                     byte[] data = new UTF8Encoding(true).GetBytes(jsonToSave);
