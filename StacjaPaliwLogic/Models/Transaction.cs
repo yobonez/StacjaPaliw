@@ -15,6 +15,13 @@ namespace StacjaPaliwLogic.Models
             set { _value = Math.Round(value, 2); }
         }
 
+        private Decimal _discounts_value;
+        public Decimal discounts_value
+        {
+            get { return _discounts_value; }
+            set { _discounts_value = Math.Round(value, 2); }
+        }
+
         public Transaction() { }
         public Transaction(decimal _value)
         {

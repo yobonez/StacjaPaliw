@@ -39,7 +39,7 @@ namespace StacjaPaliwLogic.DataAccess
             {
                 rows = new List<T>();
                 _availableId = 1;
-                File.Create(_tableFilePath);
+                //File.Create(_tableFilePath);
                 return;
             }
 
@@ -165,11 +165,12 @@ namespace StacjaPaliwLogic.DataAccess
             else
             {
                 //File.AppendAllText
-                using (FileStream fs = File.Create(_tableFilePath))
-                {
-                    byte[] data = new UTF8Encoding(true).GetBytes(jsonToSave);
-                    fs.Write(data, 0, data.Length);
-                }
+                //using (FileStream fs = File.Create(_tableFilePath))
+                //{
+                //    byte[] data = new UTF8Encoding(true).GetBytes(jsonToSave);
+                //    fs.Write(data, 0, data.Length);
+                //}
+                File.AppendAllText(_tableFilePath, jsonToSave);
             }
         }
     }

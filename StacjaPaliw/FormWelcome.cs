@@ -1,3 +1,5 @@
+using StacjaPaliwLogic.DataAccess;
+using StacjaPaliwLogic.Models;
 using StacjaPaliwUI;
 using System.Security.Policy;
 
@@ -14,6 +16,10 @@ namespace StacjaPaliw
         {
             timerCurrentDateTime.Interval = 1000;
             timerCurrentDateTime.Enabled = true;
+
+            // transaction id needs to be read later
+            IDataAccess<Transaction> transTempDataAccess = new DataAccess<Transaction>();
+            StacjaPaliwStatus.transaction.id = DataAccess<Transaction>._availableId;
         }
 
         private void buttonRefuel_Click(object sender, EventArgs e)

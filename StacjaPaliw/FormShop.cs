@@ -1,27 +1,15 @@
 ﻿using StacjaPaliwLogic.DataAccess;
 using StacjaPaliwLogic.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace StacjaPaliwUI
 {
     public partial class FormShop : Form
     {
+        IDataAccess<Transaction> transDA = new DataAccess<Transaction>();
+        IDataAccess<TransactionItem> transItemDA = new DataAccess<TransactionItem>();
         IDataAccess<Product> prodDA = new DataAccess<Product>();
-        IDataAccess<Unit> unitDA = new DataAccess<Unit>();
         List<UCProduct> uiProducts = new List<UCProduct>();
-
-        List<CheckoutDisplayItem> checkoutItems = new List<CheckoutDisplayItem>();
-
 
         public FormShop()
         {
@@ -41,27 +29,34 @@ namespace StacjaPaliwUI
 
         private void loadCheckout()
         {
-            //ELEGANCKO
-            foreach (TransactionItem transItem in StacjaPaliwStatus.transactionItems)
-            {
-                Product currentProd = prodDA.ReadRow(transItem.product_id);
-                Unit currentUnit = unitDA.ReadRow(currentProd.unit_id);
-
-                checkoutItems.Add(new CheckoutDisplayItem
-                {
-                    name = currentProd.name,
-                    price = Convert.ToString(currentProd.price) + " zł",
-                    discountPerItem = Convert.ToString(transItem.discount) + " zł",
-                    amount = Convert.ToString(transItem.unit_amount) + " " + currentUnit.name,
-                    value = Convert.ToString(Math.Round(currentProd.price * transItem.unit_amount, 2)) + " zł"
-                });
-            }
-
-            dataGridViewTransactionItems.DataSource = checkoutItems;
+            dataGridViewTransactionItems.DataSource = StacjaPaliwStatus.checkoutItems;
+            updateCheckoutValues();
         }
 
+        private void updateCheckoutValuesEventHandler(object? sender, ListChangedEventArgs e)
+        {
+            updateCheckoutValues();
+        }
+        private void updateCheckoutValues()
+        {
+            Decimal value = 0;
+            Decimal discountsValue = 0;
+            
+            foreach (TransactionItem item in StacjaPaliwStatus.transactionItems)
+            {
+                value += item.price_per_unit * item.unit_amount;
+                discountsValue += item.discount * item.unit_amount;
+            }
+            StacjaPaliwStatus.transaction.value = value;
+            StacjaPaliwStatus.transaction.discounts_value = discountsValue;
+
+            labelCheckoutValue.Text = $"Wartość {StacjaPaliwStatus.transaction.value} zł";
+            labelCheckoutDiscountsValue.Text = $"Zniżki: {StacjaPaliwStatus.transaction.discounts_value} zł";
+        }
         private void FormShop_Load(object sender, EventArgs e)
         {
+            StacjaPaliwStatus.checkoutItems.ListChanged += updateCheckoutValuesEventHandler;
+
             //IDataAccess<Product> prodDA = new DataAccess<Product>();
             List<Product> productsToAdd = prodDA.GetAllRows().ToList();
 
@@ -105,6 +100,20 @@ namespace StacjaPaliwUI
             placeProducts();
 
             loadCheckout();
+        }
+
+        private void buttonPay_Click(object sender, EventArgs e)
+        {
+            transDA.AddRow(StacjaPaliwStatus.transaction);
+
+            transItemDA.AddRows(StacjaPaliwStatus.transactionItems);
+
+            transDA.Save();
+            transItemDA.Save();
+
+            StacjaPaliwStatus.resetStatus();
+
+            MessageBox.Show("Transakcja przebiegła pomyślnie.", "Transakcja", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

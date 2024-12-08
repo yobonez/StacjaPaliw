@@ -22,6 +22,10 @@ namespace StacjaPaliwUI
 
         bool fuelLock = false;
 
+        IDataAccess<FuelProduct> fuelProdDA = new DataAccess<FuelProduct>();
+        IDataAccess<Product> prodDA = new DataAccess<Product>();
+        IDataAccess<Unit> unitDA = new DataAccess<Unit>();
+
         public FormRefuel()
         {
             InitializeComponent();
@@ -29,9 +33,6 @@ namespace StacjaPaliwUI
 
         private void FormRefuel_Load(object sender, EventArgs e)
         {
-            IDataAccess<FuelProduct> fuelProdDA = new DataAccess<FuelProduct>();
-            IDataAccess<Product> prodDA = new DataAccess<Product>();
-
             comboBoxFuelType.DisplayMember = "name";
             comboBoxFuelType.ValueMember = "id";
             foreach (FuelProduct fuelprod in fuelProdDA.GetAllRows())
@@ -121,8 +122,20 @@ namespace StacjaPaliwUI
             fuelLock = false;
             lockOrUnlockFuelControls();
 
-            TransactionItem transactionItem = new TransactionItem(selectedFuel.id, selectedFuel.price, fuelAmount, 0m); // discount on checkout, not here
+            int transaction_id = StacjaPaliwStatus.transaction.id;
+
+            TransactionItem transactionItem = new TransactionItem(selectedFuel.id, transaction_id, selectedFuel.price, fuelAmount, 0m); // discount on checkout, not here
             StacjaPaliwStatus.transactionItems.Add(transactionItem);
+
+            
+            StacjaPaliwStatus.checkoutItems.Add(new CheckoutDisplayItem()
+            {
+                name = selectedFuel.name,
+                price = Convert.ToString(selectedFuel.price) + " zł",
+                discountPerItem = Convert.ToString(transactionItem.discount) + " zł",
+                amount = Convert.ToString(transactionItem.unit_amount) + " " + unitDA.ReadRow(selectedFuel.unit_id).name,
+                value = Convert.ToString(Math.Round(selectedFuel.price * transactionItem.unit_amount, 2)) + " zł"
+            });
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

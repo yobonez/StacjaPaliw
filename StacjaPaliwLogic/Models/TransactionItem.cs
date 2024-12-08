@@ -10,6 +10,7 @@ namespace StacjaPaliwLogic.Models
     {
         public int id { get; set; }
         public int product_id { get; set; }
+        public int transaction_id { get; set; }
 
         private Decimal _price_per_unit;
         public Decimal price_per_unit
@@ -29,9 +30,10 @@ namespace StacjaPaliwLogic.Models
         }
         
         public TransactionItem() { }
-        public TransactionItem(int _product_id, Decimal _price_per_unit ,Decimal _unit_amount, Decimal _discount)
+        public TransactionItem(int _product_id, int _transaction_id, Decimal _price_per_unit ,Decimal _unit_amount, Decimal _discount)
         {
             product_id = _product_id;
+            transaction_id = _transaction_id;
             price_per_unit = _price_per_unit;
             unit_amount = _unit_amount;
             discount = _discount;

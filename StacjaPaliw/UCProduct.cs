@@ -17,10 +17,15 @@ namespace StacjaPaliwUI
     {
         public Product product 
         { get; set; }
+        public Unit unit { get; set; }
+
         public event EventHandler productChanged;
         public Decimal amount { get; set; }
         public Decimal price { get; set; }
         private TransactionItem? existingTransactionItem;
+
+        IDataAccess<Product> prodDA = new DataAccess<Product>();
+        IDataAccess<Unit> unitDA = new DataAccess<Unit>();
 
         //private string description;
         public UCProduct(TransactionItem? existingItem = null)
@@ -40,14 +45,12 @@ namespace StacjaPaliwUI
         }
         private void UCProduct_Load(object sender, EventArgs e)
         {
-            IDataAccess<Product> prodDA = new DataAccess<Product>();
-            IDataAccess<Unit> unitDA = new DataAccess<Unit>();
             
             if (existingTransactionItem != null)
             {
                 product = prodDA.ReadRow(existingTransactionItem.product_id);
 
-                lockFillControlsProductAlreadyInCheckout(unitDA.ReadRow(product.id));
+                lockFillControlsProductAlreadyInCheckout(unitDA.ReadRow(product.unit_id));
                 return;
             }
 
@@ -55,10 +58,10 @@ namespace StacjaPaliwUI
             {
                 // TODO: Relations class for DataAccess to make sure all modifications/deletions are safe
                 // and there are no leftovers 
-                Unit prodUnit = unitDA.ReadRow(product.unit_id);
+                unit = unitDA.ReadRow(product.unit_id);
 
                 labelName.Text = product.name;
-                labelPricePerUnit.Text = $"{product.price} zł / {prodUnit.name}";
+                labelPricePerUnit.Text = $"{product.price} zł / {unit.name}";
             }
         }
 
@@ -72,10 +75,21 @@ namespace StacjaPaliwUI
 
         private void buttonAddToCheckout_Click(object sender, EventArgs e)
         {
+            int transaction_id = StacjaPaliwStatus.transaction.id;
                                                                                   // TODO: the whole LoyaltyCard functionality
                                                                                   // here: discount
-            TransactionItem transactionItem = new TransactionItem(product.id, price, amount, 0m);
+            TransactionItem transactionItem = new TransactionItem(product.id, transaction_id, price, amount, 0m);
             StacjaPaliwStatus.transactionItems.Add(transactionItem);
+
+            
+            StacjaPaliwStatus.checkoutItems.Add(new CheckoutDisplayItem()
+            {
+                name = product.name,
+                price = Convert.ToString(product.price) + " zł",
+                discountPerItem = Convert.ToString(transactionItem.discount) + " zł",
+                amount = Convert.ToString(transactionItem.unit_amount) + " " + unit.name,
+                value = Convert.ToString(Math.Round(product.price * transactionItem.unit_amount, 2)) + " zł"
+            });
         }
     }
 }
