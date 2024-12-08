@@ -34,6 +34,7 @@
             labelWelcome = new Label();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabelCurrentDateTime = new ToolStripStatusLabel();
+            toolStripStatusLabelPaymentStatus = new ToolStripStatusLabel();
             helpProvider1 = new HelpProvider();
             timerCurrentDateTime = new System.Windows.Forms.Timer(components);
             menuStrip1 = new MenuStrip();
@@ -79,7 +80,7 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(32, 32);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelCurrentDateTime });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelCurrentDateTime, toolStripStatusLabelPaymentStatus });
             statusStrip1.Location = new Point(0, 282);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(2, 0, 26, 0);
@@ -92,6 +93,12 @@
             toolStripStatusLabelCurrentDateTime.Name = "toolStripStatusLabelCurrentDateTime";
             toolStripStatusLabelCurrentDateTime.Size = new Size(102, 32);
             toolStripStatusLabelCurrentDateTime.Text = "00:00:00";
+            // 
+            // toolStripStatusLabelPaymentStatus
+            // 
+            toolStripStatusLabelPaymentStatus.Name = "toolStripStatusLabelPaymentStatus";
+            toolStripStatusLabelPaymentStatus.Size = new Size(248, 32);
+            toolStripStatusLabelPaymentStatus.Text = "Życzymy miłego dnia!";
             // 
             // timerCurrentDateTime
             // 
@@ -159,5 +166,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem optionsToolStripMenuItem;
         private ToolStripMenuItem adminPanelToolStripMenuItem;
+        private ToolStripStatusLabel toolStripStatusLabelPaymentStatus;
     }
 }

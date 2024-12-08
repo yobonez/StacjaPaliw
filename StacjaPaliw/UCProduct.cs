@@ -1,15 +1,18 @@
 ﻿using StacjaPaliwLogic.DataAccess;
 using StacjaPaliwLogic.Models;
+using StacjaPaliwUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace StacjaPaliwUI
 {
@@ -45,11 +48,11 @@ namespace StacjaPaliwUI
         }
         private void UCProduct_Load(object sender, EventArgs e)
         {
-            
             if (existingTransactionItem != null)
             {
                 product = prodDA.ReadRow(existingTransactionItem.product_id);
 
+                pictureBoxProduct.BackgroundImage = getProductImage(product.image);
                 lockFillControlsProductAlreadyInCheckout(unitDA.ReadRow(product.unit_id));
                 return;
             }
@@ -62,6 +65,8 @@ namespace StacjaPaliwUI
 
                 labelName.Text = product.name;
                 labelPricePerUnit.Text = $"{product.price} zł / {unit.name}";
+
+                pictureBoxProduct.BackgroundImage = getProductImage(product.image);
             }
         }
 
@@ -90,6 +95,31 @@ namespace StacjaPaliwUI
                 amount = Convert.ToString(transactionItem.unit_amount) + " " + unit.name,
                 value = Convert.ToString(Math.Round(product.price * transactionItem.unit_amount, 2)) + " zł"
             });
+        }
+
+        private Bitmap getProductImage(string imageData)
+        {
+            if (imageData != "")
+            {
+                if (imageData.Length % 2 != 0)
+                {
+                    throw new ArgumentException(String.Format(CultureInfo.InvariantCulture, "The binary key cannot have an odd number of digits: {0}", imageData));
+                }
+
+                byte[] data = new byte[imageData.Length / 2];
+                for (int index = 0; index < data.Length; index++)
+                {
+                    string byteValue = imageData.Substring(index * 2, 2);
+                    data[index] = byte.Parse(byteValue, NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+                }
+
+                MemoryStream ms = new MemoryStream(data);
+                return new Bitmap(ms);
+            }
+            else
+            {
+                return new Bitmap(Resources.NoImage);
+            }
         }
     }
 }

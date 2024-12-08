@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace StacjaPaliwLogic.Models
     {
         public int id { get; set; }
         public string name { get; set; }
+        public string image { get; set; }
         private Decimal _price;
         public Decimal price {
             get { return _price; }

@@ -63,7 +63,8 @@ namespace StacjaPaliwUI
                 {
                     Location = new Point(locX + 250, locY),
                     TabIndex = tabIndex,
-                    Size = new Size(200, 50)
+                    Size = new Size(200, 50),
+                    Enabled = (prop.Name != "image")
                 });
                 locY += 75;
                 tabIndex++;

@@ -33,6 +33,7 @@
             labelCheckoutValue = new Label();
             groupBox1 = new GroupBox();
             labelCheckoutDiscountsValue = new Label();
+            buttonClose = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransactionItems).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -92,11 +93,21 @@
             labelCheckoutDiscountsValue.Text = "Zniżki: 0,00 zł";
             labelCheckoutDiscountsValue.TextAlign = ContentAlignment.TopRight;
             // 
+            // buttonClose
+            // 
+            buttonClose.Location = new Point(1209, 881);
+            buttonClose.Name = "buttonClose";
+            buttonClose.Size = new Size(150, 46);
+            buttonClose.TabIndex = 7;
+            buttonClose.Text = "Zamknij";
+            buttonClose.UseVisualStyleBackColor = true;
+            // 
             // FormShop
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1539, 950);
+            Controls.Add(buttonClose);
             Controls.Add(groupBox1);
             Controls.Add(buttonPay);
             Controls.Add(dataGridViewTransactionItems);
@@ -115,5 +126,6 @@
         private Label labelCheckoutValue;
         private GroupBox groupBox1;
         private Label labelCheckoutDiscountsValue;
+        private Button buttonClose;
     }
 }

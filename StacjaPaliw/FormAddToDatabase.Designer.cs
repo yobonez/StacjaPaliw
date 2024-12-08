@@ -31,6 +31,12 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             buttonAdd = new Button();
             buttonCancel = new Button();
+            openFileDialogProductBitmap = new OpenFileDialog();
+            buttonAddBitmap = new Button();
+            pictureBoxProduct = new PictureBox();
+            panelImage = new Panel();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProduct).BeginInit();
+            panelImage.SuspendLayout();
             SuspendLayout();
             // 
             // buttonAdd
@@ -52,16 +58,51 @@
             buttonCancel.Text = "Anuluj";
             buttonCancel.UseVisualStyleBackColor = true;
             // 
+            // buttonAddBitmap
+            // 
+            buttonAddBitmap.Location = new Point(19, 199);
+            buttonAddBitmap.Name = "buttonAddBitmap";
+            buttonAddBitmap.Size = new Size(241, 49);
+            buttonAddBitmap.TabIndex = 2;
+            buttonAddBitmap.Text = "Dodaj obrazek";
+            buttonAddBitmap.UseVisualStyleBackColor = true;
+            buttonAddBitmap.Click += buttonAddBitmap_Click;
+            // 
+            // pictureBoxProduct
+            // 
+            pictureBoxProduct.BackColor = SystemColors.ButtonHighlight;
+            pictureBoxProduct.BackgroundImage = Properties.Resources.NoImage;
+            pictureBoxProduct.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBoxProduct.InitialImage = Properties.Resources.NoImage;
+            pictureBoxProduct.Location = new Point(61, 21);
+            pictureBoxProduct.Name = "pictureBoxProduct";
+            pictureBoxProduct.Size = new Size(150, 150);
+            pictureBoxProduct.TabIndex = 3;
+            pictureBoxProduct.TabStop = false;
+            // 
+            // panelImage
+            // 
+            panelImage.Controls.Add(pictureBoxProduct);
+            panelImage.Controls.Add(buttonAddBitmap);
+            panelImage.Location = new Point(509, 171);
+            panelImage.Name = "panelImage";
+            panelImage.Size = new Size(279, 267);
+            panelImage.TabIndex = 4;
+            panelImage.Visible = false;
+            // 
             // FormAddToDatabase
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1163, 591);
+            Controls.Add(panelImage);
             Controls.Add(buttonCancel);
             Controls.Add(buttonAdd);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormAddToDatabase";
             Text = "Dodaj [coś]";
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProduct).EndInit();
+            panelImage.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -70,5 +111,9 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button buttonAdd;
         private Button buttonCancel;
+        private OpenFileDialog openFileDialogProductBitmap;
+        private Button buttonAddBitmap;
+        private PictureBox pictureBoxProduct;
+        private Panel panelImage;
     }
 }

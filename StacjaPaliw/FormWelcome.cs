@@ -1,7 +1,6 @@
 using StacjaPaliwLogic.DataAccess;
 using StacjaPaliwLogic.Models;
 using StacjaPaliwUI;
-using System.Security.Policy;
 
 namespace StacjaPaliw
 {
@@ -36,6 +35,17 @@ namespace StacjaPaliw
         private void timerCurrentDateTime_Tick(object sender, EventArgs e)
         {
             toolStripStatusLabelCurrentDateTime.Text = DateTime.Now.ToLongTimeString();
+
+            if (StacjaPaliwStatus.transaction.value > 0)
+            {
+                toolStripStatusLabelPaymentStatus.Text = "Transakcja oczekuje na realizacjê.";
+                toolStripStatusLabelPaymentStatus.ForeColor = Color.Red;
+            }
+            else
+            {
+                toolStripStatusLabelPaymentStatus.Text = "Mi³ego dnia!";
+                toolStripStatusLabelPaymentStatus.ForeColor = SystemColors.ControlText;
+            }
         }
 
         private void adminPanelToolStripMenuItem_Click(object sender, EventArgs e)
