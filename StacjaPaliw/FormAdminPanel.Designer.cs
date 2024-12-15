@@ -40,18 +40,18 @@
             oznaczenieProduktuJakoPaliwoToolStripMenuItem = new ToolStripMenuItem();
             label2 = new Label();
             comboBoxDateRange = new ComboBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            dateTimePicker1 = new DateTimePicker();
+            radioButtonCurrent = new RadioButton();
+            radioButtonPrevious = new RadioButton();
+            dateTimePickerFrom = new DateTimePicker();
             panelDatePicker = new Panel();
-            dateTimePicker2 = new DateTimePicker();
+            dateTimePickerTo = new DateTimePicker();
             label3 = new Label();
             label1 = new Label();
-            panel2 = new Panel();
-            button1 = new Button();
+            panelPrevious = new Panel();
+            labelIncome = new Label();
             menuStrip2.SuspendLayout();
             panelDatePicker.SuspendLayout();
-            panel2.SuspendLayout();
+            panelPrevious.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -147,54 +147,59 @@
             comboBoxDateRange.Size = new Size(242, 40);
             comboBoxDateRange.TabIndex = 4;
             comboBoxDateRange.Text = "Wybierz zakres";
+            comboBoxDateRange.SelectedIndexChanged += comboBoxDateRange_SelectedIndexChanged;
             // 
-            // radioButton1
+            // radioButtonCurrent
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(3, 3);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(127, 36);
-            radioButton1.TabIndex = 5;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Obecny";
-            radioButton1.UseVisualStyleBackColor = true;
+            radioButtonCurrent.AutoSize = true;
+            radioButtonCurrent.Checked = true;
+            radioButtonCurrent.Location = new Point(3, 3);
+            radioButtonCurrent.Name = "radioButtonCurrent";
+            radioButtonCurrent.Size = new Size(127, 36);
+            radioButtonCurrent.TabIndex = 5;
+            radioButtonCurrent.TabStop = true;
+            radioButtonCurrent.Text = "Obecny";
+            radioButtonCurrent.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButtonPrevious
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(136, 3);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(151, 36);
-            radioButton2.TabIndex = 6;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Poprzedni";
-            radioButton2.UseVisualStyleBackColor = true;
+            radioButtonPrevious.AutoSize = true;
+            radioButtonPrevious.Location = new Point(136, 3);
+            radioButtonPrevious.Name = "radioButtonPrevious";
+            radioButtonPrevious.Size = new Size(151, 36);
+            radioButtonPrevious.TabIndex = 6;
+            radioButtonPrevious.TabStop = true;
+            radioButtonPrevious.Text = "Poprzedni";
+            radioButtonPrevious.UseVisualStyleBackColor = true;
+            radioButtonPrevious.CheckedChanged += radioButtonPrevious_CheckedChanged;
             // 
-            // dateTimePicker1
+            // dateTimePickerFrom
             // 
-            dateTimePicker1.Location = new Point(71, 8);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(409, 39);
-            dateTimePicker1.TabIndex = 7;
+            dateTimePickerFrom.Location = new Point(71, 8);
+            dateTimePickerFrom.Name = "dateTimePickerFrom";
+            dateTimePickerFrom.Size = new Size(409, 39);
+            dateTimePickerFrom.TabIndex = 7;
+            dateTimePickerFrom.ValueChanged += dateTimePickerFrom_ValueChanged;
             // 
             // panelDatePicker
             // 
-            panelDatePicker.Controls.Add(dateTimePicker2);
+            panelDatePicker.Controls.Add(dateTimePickerTo);
             panelDatePicker.Controls.Add(label3);
             panelDatePicker.Controls.Add(label1);
-            panelDatePicker.Controls.Add(dateTimePicker1);
+            panelDatePicker.Controls.Add(dateTimePickerFrom);
             panelDatePicker.Enabled = false;
             panelDatePicker.Location = new Point(556, 98);
             panelDatePicker.Name = "panelDatePicker";
             panelDatePicker.Size = new Size(496, 101);
             panelDatePicker.TabIndex = 8;
             // 
-            // dateTimePicker2
+            // dateTimePickerTo
             // 
-            dateTimePicker2.Location = new Point(71, 53);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(409, 39);
-            dateTimePicker2.TabIndex = 10;
+            dateTimePickerTo.Location = new Point(71, 53);
+            dateTimePickerTo.Name = "dateTimePickerTo";
+            dateTimePickerTo.Size = new Size(409, 39);
+            dateTimePickerTo.TabIndex = 10;
+            dateTimePickerTo.ValueChanged += dateTimePickerTo_ValueChanged;
             // 
             // label3
             // 
@@ -214,32 +219,31 @@
             label1.TabIndex = 8;
             label1.Text = "Od:";
             // 
-            // panel2
+            // panelPrevious
             // 
-            panel2.Controls.Add(radioButton1);
-            panel2.Controls.Add(radioButton2);
-            panel2.Location = new Point(12, 122);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(290, 45);
-            panel2.TabIndex = 9;
+            panelPrevious.Controls.Add(radioButtonCurrent);
+            panelPrevious.Controls.Add(radioButtonPrevious);
+            panelPrevious.Location = new Point(12, 122);
+            panelPrevious.Name = "panelPrevious";
+            panelPrevious.Size = new Size(290, 45);
+            panelPrevious.TabIndex = 9;
             // 
-            // button1
+            // labelIncome
             // 
-            button1.Location = new Point(886, 221);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 46);
-            button1.TabIndex = 10;
-            button1.Text = "fire";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            labelIncome.AutoSize = true;
+            labelIncome.Location = new Point(12, 292);
+            labelIncome.Name = "labelIncome";
+            labelIncome.Size = new Size(192, 32);
+            labelIncome.TabIndex = 11;
+            labelIncome.Text = "Przychód: 0,00 zł";
             // 
             // FormAdminPanel
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1086, 890);
-            Controls.Add(button1);
-            Controls.Add(panel2);
+            Controls.Add(labelIncome);
+            Controls.Add(panelPrevious);
             Controls.Add(comboBoxDateRange);
             Controls.Add(panelDatePicker);
             Controls.Add(label2);
@@ -253,8 +257,8 @@
             menuStrip2.PerformLayout();
             panelDatePicker.ResumeLayout(false);
             panelDatePicker.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panelPrevious.ResumeLayout(false);
+            panelPrevious.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -272,14 +276,14 @@
         private ToolStripMenuItem oznaczenieProduktuJakoPaliwoToolStripMenuItem;
         private Label label2;
         private ComboBox comboBoxDateRange;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private DateTimePicker dateTimePicker1;
+        private RadioButton radioButtonCurrent;
+        private RadioButton radioButtonPrevious;
+        private DateTimePicker dateTimePickerFrom;
         private Panel panelDatePicker;
         private Label label1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePickerTo;
         private Label label3;
-        private Panel panel2;
-        private Button button1;
+        private Panel panelPrevious;
+        private Label labelIncome;
     }
 }

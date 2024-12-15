@@ -20,11 +20,13 @@ namespace StacjaPaliwUI
         {
             IDataAccess<Transaction> transactionDA = new DataAccess<Transaction>();
             IEnumerable<Transaction> transactions = transactionDA.GetAllRows()
-                                                                 .Where(s => s.dateTime > );
-
-
+                                                                 .Where(s => s.dateTime > from && s.dateTime < to);
+            foreach (Transaction transaction in transactions)
+            {
+                salesTotal += transaction.value;
+            }
         }
-        DataCruncher(string _dateRangeName, bool _isPrevious)
+        public DataCruncher(string _dateRangeName, bool _isPrevious)
         {
             dateRangeName = _dateRangeName;
             DateTime now = DateTime.Now;
@@ -49,9 +51,15 @@ namespace StacjaPaliwUI
                 from = DateTimeUtils.StartOfYear(now, _isPrevious);
                 to = DateTimeUtils.EndOfYear(now, _isPrevious);
             }
+
+            GetSalesTotal();
         }
-        DataCruncher(DateTime from, DateTime to) 
+        public DataCruncher(DateTime _from, DateTime _to) 
         {
+            from = _from;
+            to = _to;
+
+            GetSalesTotal();
         }
     }
 }

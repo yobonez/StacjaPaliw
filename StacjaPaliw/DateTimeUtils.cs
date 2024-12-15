@@ -57,7 +57,7 @@ namespace StacjaPaliwUI
         public static DateTime StartOfYear( DateTime theDate, bool _isPrevious)
         {
             DateTime firstDayOfYear = StartOfDay(theDate.AddDays(-theDate.DayOfYear + 1), false);
-            if (_isPrevious) firstDayOfYear.AddYears(-1);
+            if (_isPrevious) return firstDayOfYear.AddYears(-1);
             return firstDayOfYear;
         }
         public static DateTime EndOfYear( DateTime theDate, bool _isPrevious)

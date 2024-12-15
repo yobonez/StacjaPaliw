@@ -134,15 +134,77 @@ namespace StacjaPaliwUI
 
         public void loadStats()
         {
-            if (comboBoxDateRange.SelectedIndex != -1)
+            if (comboBoxDateRange.Text != "wybrany zakres...")
             {
-                DataCruncher dc = new DataCruncher();
+                bool isPreviousRange = radioButtonPrevious.Checked;
+
+                DataCruncher dc = new DataCruncher(comboBoxDateRange.Text, isPreviousRange);
+
+                dateTimePickerTo.Value = dc.to;
+                dateTimePickerFrom.Value = dc.from;
+                labelIncome.Text = $"Przychód: {dc.salesTotal} zł";
+            }
+            else
+            {
+                DataCruncher dc = new DataCruncher(dateTimePickerFrom.Value, dateTimePickerTo.Value);
+
+                labelIncome.Text = $"Przychód: {dc.salesTotal} zł";
             }
 
             return;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void comboBoxDateRange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxDateRange.Text == "wybrany zakres...")
+            {
+                panelDatePicker.Enabled = true;
+                panelPrevious.Enabled = false;
+            }
+            else
+            {
+                panelDatePicker.Enabled = false;
+                panelPrevious.Enabled = true;
+            }
+
+            loadStats();
+        }
+
+        private void dateTimePickerFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePickerFrom.Value > dateTimePickerTo.Value)
+            {
+                MessageBox.Show("Pole \"Od:\" nie może mieć daty większej niż \"Do:\"", "Uwaga", MessageBoxButtons.OK);
+                return;
+            }
+            else if (!panelDatePicker.Enabled)
+            {
+                return;
+            }
+            else
+            {
+                loadStats();
+            }
+        }
+
+        private void dateTimePickerTo_ValueChanged(object sender, EventArgs e)
+        {
+            if (panelDatePicker.Enabled && dateTimePickerTo.Value < dateTimePickerFrom.Value)
+            {
+                MessageBox.Show("Pole \"Do:\" nie może mieć daty mniejszej niż \"Od:\"", "Uwaga", MessageBoxButtons.OK);
+                return;
+            }
+            else if (!panelDatePicker.Enabled)
+            {
+                return;
+            }
+            else
+            {
+                loadStats();
+            }
+        }
+
+        private void radioButtonPrevious_CheckedChanged(object sender, EventArgs e)
         {
             loadStats();
         }
