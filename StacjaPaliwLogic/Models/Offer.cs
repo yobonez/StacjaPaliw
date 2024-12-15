@@ -16,12 +16,5 @@ namespace StacjaPaliwLogic.Models
             id = _id;
             name = _name;
         }
-
-        //public Offer (int id) { m_offer_id = id; }
-        //public void CheckOfferEligibility()
-        //{
-
-        //}
-        //public void ApplyOffer() { } // nie wiem czy to tutaj powinno być, wyjdzie w praniu
     }
 }

@@ -22,10 +22,13 @@ namespace StacjaPaliwLogic.Models
             set { _discounts_value = Math.Round(value, 2); }
         }
 
+        public DateTime dateTime { get; set; }
+
         public Transaction() { }
-        public Transaction(decimal _value)
+        public Transaction(decimal _value, decimal _discounts_value)
         {
             value = _value;
+            discounts_value = _discounts_value;
         }
     }
 }

@@ -104,6 +104,7 @@ namespace StacjaPaliwUI
 
         private void buttonPay_Click(object sender, EventArgs e)
         {
+            StacjaPaliwStatus.transaction.dateTime = DateTime.Now;
             transDA.AddRow(StacjaPaliwStatus.transaction);
 
             transItemDA.AddRows(StacjaPaliwStatus.transactionItems);

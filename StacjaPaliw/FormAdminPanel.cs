@@ -131,5 +131,20 @@ namespace StacjaPaliwUI
 
             InitializeDbAddWindow(typeof(Unit), new Unit(), propInfo);
         }
+
+        public void loadStats()
+        {
+            if (comboBoxDateRange.SelectedIndex != -1)
+            {
+                DataCruncher dc = new DataCruncher();
+            }
+
+            return;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            loadStats();
+        }
     }
 }
