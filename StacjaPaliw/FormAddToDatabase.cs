@@ -25,11 +25,11 @@ namespace StacjaPaliwUI
             model = _model;
             Type modelType = _model.GetType();
 
-            if (modelType.Name == "Product") panelImage.Visible = true; 
-
             controls = _controls;
             foreach (Control control in controls)
             {
+                if (control.Text == "image") panelImage.Visible = true;
+
                 Controls.Add(control);
                 windowHeight += 50;
             }

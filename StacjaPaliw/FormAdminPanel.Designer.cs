@@ -31,12 +31,13 @@
             menuStrip1 = new MenuStrip();
             menuStrip2 = new MenuStrip();
             addToolStripMenuItem = new ToolStripMenuItem();
-            anOfferToolStripMenuItem = new ToolStripMenuItem();
+            programLojalnościowyToolStripMenuItem = new ToolStripMenuItem();
+            kartęLojalnościowaToolStripMenuItem = new ToolStripMenuItem();
+            ofertęToolStripMenuItem = new ToolStripMenuItem();
+            warToolStripMenuItem = new ToolStripMenuItem();
             aProductToolStripMenuItem = new ToolStripMenuItem();
             anEmployeeToolStripMenuItem = new ToolStripMenuItem();
-            aDistributorToolStripMenuItem = new ToolStripMenuItem();
             anUnitToolStripMenuItem = new ToolStripMenuItem();
-            loyaltyCardToolStripMenuItem = new ToolStripMenuItem();
             oznaczenieProduktuJakoPaliwoToolStripMenuItem = new ToolStripMenuItem();
             label2 = new Label();
             comboBoxDateRange = new ComboBox();
@@ -49,15 +50,25 @@
             label1 = new Label();
             panelPrevious = new Panel();
             labelIncome = new Label();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            pictureBox1 = new PictureBox();
+            progressBar1 = new ProgressBar();
+            labelProdName = new Label();
+            labelMB = new Label();
+            klientaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip2.SuspendLayout();
             panelDatePicker.SuspendLayout();
             panelPrevious.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Location = new Point(0, 40);
+            menuStrip1.Location = new Point(0, 42);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1086, 24);
             menuStrip1.TabIndex = 1;
@@ -69,23 +80,44 @@
             menuStrip2.Items.AddRange(new ToolStripItem[] { addToolStripMenuItem });
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
-            menuStrip2.Size = new Size(1086, 40);
+            menuStrip2.Size = new Size(1086, 42);
             menuStrip2.TabIndex = 2;
             menuStrip2.Text = "menuStrip2";
             // 
             // addToolStripMenuItem
             // 
-            addToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { anOfferToolStripMenuItem, aProductToolStripMenuItem, anEmployeeToolStripMenuItem, aDistributorToolStripMenuItem, anUnitToolStripMenuItem, loyaltyCardToolStripMenuItem, oznaczenieProduktuJakoPaliwoToolStripMenuItem });
+            addToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { programLojalnościowyToolStripMenuItem, klientaToolStripMenuItem, aProductToolStripMenuItem, anEmployeeToolStripMenuItem, anUnitToolStripMenuItem, oznaczenieProduktuJakoPaliwoToolStripMenuItem });
             addToolStripMenuItem.Name = "addToolStripMenuItem";
-            addToolStripMenuItem.Size = new Size(112, 36);
+            addToolStripMenuItem.Size = new Size(112, 38);
             addToolStripMenuItem.Text = "Dodaj...";
             // 
-            // anOfferToolStripMenuItem
+            // programLojalnościowyToolStripMenuItem
             // 
-            anOfferToolStripMenuItem.Name = "anOfferToolStripMenuItem";
-            anOfferToolStripMenuItem.Size = new Size(502, 44);
-            anOfferToolStripMenuItem.Text = "Ofertę";
-            anOfferToolStripMenuItem.Click += anOfferToolStripMenuItem_Click;
+            programLojalnościowyToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { kartęLojalnościowaToolStripMenuItem, ofertęToolStripMenuItem, warToolStripMenuItem });
+            programLojalnościowyToolStripMenuItem.Name = "programLojalnościowyToolStripMenuItem";
+            programLojalnościowyToolStripMenuItem.Size = new Size(502, 44);
+            programLojalnościowyToolStripMenuItem.Text = "Program lojalnościowy";
+            // 
+            // kartęLojalnościowaToolStripMenuItem
+            // 
+            kartęLojalnościowaToolStripMenuItem.Name = "kartęLojalnościowaToolStripMenuItem";
+            kartęLojalnościowaToolStripMenuItem.Size = new Size(359, 44);
+            kartęLojalnościowaToolStripMenuItem.Text = "Kartę lojalnościową";
+            kartęLojalnościowaToolStripMenuItem.Click += kartęLojalnościowaToolStripMenuItem_Click;
+            // 
+            // ofertęToolStripMenuItem
+            // 
+            ofertęToolStripMenuItem.Name = "ofertęToolStripMenuItem";
+            ofertęToolStripMenuItem.Size = new Size(359, 44);
+            ofertęToolStripMenuItem.Text = "Ofertę";
+            ofertęToolStripMenuItem.Click += ofertęToolStripMenuItem_Click;
+            // 
+            // warToolStripMenuItem
+            // 
+            warToolStripMenuItem.Name = "warToolStripMenuItem";
+            warToolStripMenuItem.Size = new Size(359, 44);
+            warToolStripMenuItem.Text = "Warunek oferty";
+            warToolStripMenuItem.Click += warToolStripMenuItem_Click;
             // 
             // aProductToolStripMenuItem
             // 
@@ -101,25 +133,12 @@
             anEmployeeToolStripMenuItem.Text = "Pracownika";
             anEmployeeToolStripMenuItem.Click += anEmployeeToolStripMenuItem_Click;
             // 
-            // aDistributorToolStripMenuItem
-            // 
-            aDistributorToolStripMenuItem.Name = "aDistributorToolStripMenuItem";
-            aDistributorToolStripMenuItem.Size = new Size(502, 44);
-            aDistributorToolStripMenuItem.Text = "Dystrybutor";
-            // 
             // anUnitToolStripMenuItem
             // 
             anUnitToolStripMenuItem.Name = "anUnitToolStripMenuItem";
             anUnitToolStripMenuItem.Size = new Size(502, 44);
             anUnitToolStripMenuItem.Text = "Jednostkę";
             anUnitToolStripMenuItem.Click += anUnitToolStripMenuItem_Click;
-            // 
-            // loyaltyCardToolStripMenuItem
-            // 
-            loyaltyCardToolStripMenuItem.Name = "loyaltyCardToolStripMenuItem";
-            loyaltyCardToolStripMenuItem.Size = new Size(502, 44);
-            loyaltyCardToolStripMenuItem.Text = "Kartę lojalnościową";
-            loyaltyCardToolStripMenuItem.Click += loyaltyCardToolStripMenuItem_Click;
             // 
             // oznaczenieProduktuJakoPaliwoToolStripMenuItem
             // 
@@ -131,10 +150,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F);
+            label2.Font = new Font("Segoe UI", 16F);
             label2.Location = new Point(12, 64);
             label2.Name = "label2";
-            label2.Size = new Size(243, 45);
+            label2.Size = new Size(319, 59);
             label2.TabIndex = 3;
             label2.Text = "Podsumowanie:";
             // 
@@ -142,7 +161,7 @@
             // 
             comboBoxDateRange.FormattingEnabled = true;
             comboBoxDateRange.Items.AddRange(new object[] { "dzień", "tydzień", "miesiąc", "rok", "wybrany zakres..." });
-            comboBoxDateRange.Location = new Point(308, 124);
+            comboBoxDateRange.Location = new Point(319, 168);
             comboBoxDateRange.Name = "comboBoxDateRange";
             comboBoxDateRange.Size = new Size(242, 40);
             comboBoxDateRange.TabIndex = 4;
@@ -188,7 +207,7 @@
             panelDatePicker.Controls.Add(label1);
             panelDatePicker.Controls.Add(dateTimePickerFrom);
             panelDatePicker.Enabled = false;
-            panelDatePicker.Location = new Point(556, 98);
+            panelDatePicker.Location = new Point(567, 142);
             panelDatePicker.Name = "panelDatePicker";
             panelDatePicker.Size = new Size(496, 101);
             panelDatePicker.TabIndex = 8;
@@ -223,7 +242,7 @@
             // 
             panelPrevious.Controls.Add(radioButtonCurrent);
             panelPrevious.Controls.Add(radioButtonPrevious);
-            panelPrevious.Location = new Point(12, 122);
+            panelPrevious.Location = new Point(23, 166);
             panelPrevious.Name = "panelPrevious";
             panelPrevious.Size = new Size(290, 45);
             panelPrevious.TabIndex = 9;
@@ -231,18 +250,79 @@
             // labelIncome
             // 
             labelIncome.AutoSize = true;
-            labelIncome.Location = new Point(12, 292);
+            labelIncome.Font = new Font("Segoe UI", 12F);
+            labelIncome.Location = new Point(16, 21);
             labelIncome.Name = "labelIncome";
-            labelIncome.Size = new Size(192, 32);
+            labelIncome.Size = new Size(255, 45);
             labelIncome.TabIndex = 11;
             labelIncome.Text = "Przychód: 0,00 zł";
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(labelMB);
+            panel1.Controls.Add(labelIncome);
+            panel1.Location = new Point(26, 249);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1037, 620);
+            panel1.TabIndex = 12;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(progressBar1);
+            panel2.Controls.Add(labelProdName);
+            panel2.Location = new Point(16, 126);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(491, 148);
+            panel2.TabIndex = 16;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
+            // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(117, 46);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(345, 46);
+            progressBar1.TabIndex = 13;
+            // 
+            // labelProdName
+            // 
+            labelProdName.AutoSize = true;
+            labelProdName.Location = new Point(6, 106);
+            labelProdName.Name = "labelProdName";
+            labelProdName.Size = new Size(97, 32);
+            labelProdName.TabIndex = 15;
+            labelProdName.Text = "Produkt";
+            // 
+            // labelMB
+            // 
+            labelMB.AutoSize = true;
+            labelMB.Location = new Point(16, 78);
+            labelMB.Name = "labelMB";
+            labelMB.Size = new Size(354, 32);
+            labelMB.TabIndex = 12;
+            labelMB.Text = "Najczęściej kupywane produkty:";
+            // 
+            // klientaToolStripMenuItem
+            // 
+            klientaToolStripMenuItem.Name = "klientaToolStripMenuItem";
+            klientaToolStripMenuItem.Size = new Size(502, 44);
+            klientaToolStripMenuItem.Text = "Klienta";
+            klientaToolStripMenuItem.Click += klientaToolStripMenuItem_Click;
             // 
             // FormAdminPanel
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1086, 890);
-            Controls.Add(labelIncome);
+            Controls.Add(panel1);
             Controls.Add(panelPrevious);
             Controls.Add(comboBoxDateRange);
             Controls.Add(panelDatePicker);
@@ -259,6 +339,11 @@
             panelDatePicker.PerformLayout();
             panelPrevious.ResumeLayout(false);
             panelPrevious.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -269,10 +354,7 @@
         private ToolStripMenuItem addToolStripMenuItem;
         private ToolStripMenuItem anEmployeeToolStripMenuItem;
         private ToolStripMenuItem aProductToolStripMenuItem;
-        private ToolStripMenuItem aDistributorToolStripMenuItem;
-        private ToolStripMenuItem anOfferToolStripMenuItem;
         private ToolStripMenuItem anUnitToolStripMenuItem;
-        private ToolStripMenuItem loyaltyCardToolStripMenuItem;
         private ToolStripMenuItem oznaczenieProduktuJakoPaliwoToolStripMenuItem;
         private Label label2;
         private ComboBox comboBoxDateRange;
@@ -285,5 +367,16 @@
         private Label label3;
         private Panel panelPrevious;
         private Label labelIncome;
+        private Panel panel1;
+        private PictureBox pictureBox1;
+        private ProgressBar progressBar1;
+        private Label labelMB;
+        private Label labelProdName;
+        private Panel panel2;
+        private ToolStripMenuItem programLojalnościowyToolStripMenuItem;
+        private ToolStripMenuItem kartęLojalnościowaToolStripMenuItem;
+        private ToolStripMenuItem ofertęToolStripMenuItem;
+        private ToolStripMenuItem warToolStripMenuItem;
+        private ToolStripMenuItem klientaToolStripMenuItem;
     }
 }

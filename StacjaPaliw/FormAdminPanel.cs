@@ -42,7 +42,7 @@ namespace StacjaPaliwUI
             controls.Add(new Label()
             {
                 Text = windowName,
-                Font = new Font("Segoe UI", 16),
+                Font = new Font("Segoe UI", 14),
                 Location = new Point(50, 50),
                 Size = new Size(500, 75),
                 TabIndex = 0
@@ -52,22 +52,45 @@ namespace StacjaPaliwUI
             foreach (var prop in propInfo)
             {
                 if (prop.Name == "id") continue;
-                controls.Add(new Label()
+
+                if (prop.PropertyType.Name == "DateTime")
                 {
-                    Text = prop.Name,
-                    Location = new Point(locX, locY),
-                    TabIndex = tabIndex,
-                    Size = new Size(200, 50)
-                });
-                controls.Add(new TextBox()
+                    controls.Add(new Label()
+                    {
+                        Text = prop.Name,
+                        Location = new Point(locX, locY),
+                        TabIndex = tabIndex,
+                        Size = new Size(200, 50)
+                    });
+                    controls.Add(new DateTimePicker()
+                    {
+                        Text = DateTime.Now.ToString(),
+                        Location = new Point(locX + 250, locY),
+                        TabIndex = tabIndex,
+                        Size = new Size(200, 50)
+                    });
+                    locY += 75;
+                    tabIndex++;
+                }
+                else
                 {
-                    Location = new Point(locX + 250, locY),
-                    TabIndex = tabIndex,
-                    Size = new Size(200, 50),
-                    Enabled = (prop.Name != "image")
-                });
-                locY += 75;
-                tabIndex++;
+                    controls.Add(new Label()
+                    {
+                        Text = prop.Name,
+                        Location = new Point(locX, locY),
+                        TabIndex = tabIndex,
+                        Size = new Size(200, 50)
+                    });
+                    controls.Add(new TextBox()
+                    {
+                        Location = new Point(locX + 250, locY),
+                        TabIndex = tabIndex,
+                        Size = new Size(200, 50),
+                        Enabled = (prop.Name != "image")
+                    });
+                    locY += 75;
+                    tabIndex++;
+                }
             }
             formPopulated = true;
             addToDatabase.ReceiveFormElements(controls, model);
@@ -131,6 +154,30 @@ namespace StacjaPaliwUI
 
             InitializeDbAddWindow(typeof(Unit), new Unit(), propInfo);
         }
+        private void kartęLojalnościowaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            windowName = "Dodaj kartę lojalnościową";
+
+            InitializeDbAddWindow(typeof(LoyaltyCard), new LoyaltyCard(), propInfo);
+        }
+        private void ofertęToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            windowName = "Dodaj ofertę";
+
+            InitializeDbAddWindow(typeof(Offer), new Offer(), propInfo);
+        }
+        private void warToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            windowName = "Dodaj warunek oferty";
+
+            InitializeDbAddWindow(typeof(OfferChallenge), new OfferChallenge(), propInfo);
+        }
+        private void klientaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            windowName = "Dodaj klienta";
+
+            InitializeDbAddWindow(typeof(Client), new Client(), propInfo);
+        }
 
         public void loadStats()
         {
@@ -141,6 +188,7 @@ namespace StacjaPaliwUI
                 DataCruncher dc = new DataCruncher(comboBoxDateRange.Text, isPreviousRange);
 
                 dateTimePickerTo.Value = dc.to;
+
                 dateTimePickerFrom.Value = dc.from;
                 labelIncome.Text = $"Przychód: {dc.salesTotal} zł";
             }
