@@ -35,6 +35,7 @@
             kartęLojalnościowaToolStripMenuItem = new ToolStripMenuItem();
             ofertęToolStripMenuItem = new ToolStripMenuItem();
             warToolStripMenuItem = new ToolStripMenuItem();
+            klientaToolStripMenuItem = new ToolStripMenuItem();
             aProductToolStripMenuItem = new ToolStripMenuItem();
             anEmployeeToolStripMenuItem = new ToolStripMenuItem();
             anUnitToolStripMenuItem = new ToolStripMenuItem();
@@ -51,24 +52,18 @@
             panelPrevious = new Panel();
             labelIncome = new Label();
             panel1 = new Panel();
-            panel2 = new Panel();
-            pictureBox1 = new PictureBox();
-            progressBar1 = new ProgressBar();
-            labelProdName = new Label();
             labelMB = new Label();
-            klientaToolStripMenuItem = new ToolStripMenuItem();
+            panelProductStats = new Panel();
             menuStrip2.SuspendLayout();
             panelDatePicker.SuspendLayout();
             panelPrevious.SuspendLayout();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Location = new Point(0, 42);
+            menuStrip1.Location = new Point(0, 40);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1086, 24);
             menuStrip1.TabIndex = 1;
@@ -80,7 +75,7 @@
             menuStrip2.Items.AddRange(new ToolStripItem[] { addToolStripMenuItem });
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
-            menuStrip2.Size = new Size(1086, 42);
+            menuStrip2.Size = new Size(1086, 40);
             menuStrip2.TabIndex = 2;
             menuStrip2.Text = "menuStrip2";
             // 
@@ -88,7 +83,7 @@
             // 
             addToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { programLojalnościowyToolStripMenuItem, klientaToolStripMenuItem, aProductToolStripMenuItem, anEmployeeToolStripMenuItem, anUnitToolStripMenuItem, oznaczenieProduktuJakoPaliwoToolStripMenuItem });
             addToolStripMenuItem.Name = "addToolStripMenuItem";
-            addToolStripMenuItem.Size = new Size(112, 38);
+            addToolStripMenuItem.Size = new Size(112, 36);
             addToolStripMenuItem.Text = "Dodaj...";
             // 
             // programLojalnościowyToolStripMenuItem
@@ -101,23 +96,30 @@
             // kartęLojalnościowaToolStripMenuItem
             // 
             kartęLojalnościowaToolStripMenuItem.Name = "kartęLojalnościowaToolStripMenuItem";
-            kartęLojalnościowaToolStripMenuItem.Size = new Size(359, 44);
+            kartęLojalnościowaToolStripMenuItem.Size = new Size(351, 44);
             kartęLojalnościowaToolStripMenuItem.Text = "Kartę lojalnościową";
             kartęLojalnościowaToolStripMenuItem.Click += kartęLojalnościowaToolStripMenuItem_Click;
             // 
             // ofertęToolStripMenuItem
             // 
             ofertęToolStripMenuItem.Name = "ofertęToolStripMenuItem";
-            ofertęToolStripMenuItem.Size = new Size(359, 44);
+            ofertęToolStripMenuItem.Size = new Size(351, 44);
             ofertęToolStripMenuItem.Text = "Ofertę";
             ofertęToolStripMenuItem.Click += ofertęToolStripMenuItem_Click;
             // 
             // warToolStripMenuItem
             // 
             warToolStripMenuItem.Name = "warToolStripMenuItem";
-            warToolStripMenuItem.Size = new Size(359, 44);
+            warToolStripMenuItem.Size = new Size(351, 44);
             warToolStripMenuItem.Text = "Warunek oferty";
             warToolStripMenuItem.Click += warToolStripMenuItem_Click;
+            // 
+            // klientaToolStripMenuItem
+            // 
+            klientaToolStripMenuItem.Name = "klientaToolStripMenuItem";
+            klientaToolStripMenuItem.Size = new Size(502, 44);
+            klientaToolStripMenuItem.Text = "Klienta";
+            klientaToolStripMenuItem.Click += klientaToolStripMenuItem_Click;
             // 
             // aProductToolStripMenuItem
             // 
@@ -259,47 +261,13 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(panelProductStats);
             panel1.Controls.Add(labelMB);
             panel1.Controls.Add(labelIncome);
             panel1.Location = new Point(26, 249);
             panel1.Name = "panel1";
             panel1.Size = new Size(1037, 620);
             panel1.TabIndex = 12;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(pictureBox1);
-            panel2.Controls.Add(progressBar1);
-            panel2.Controls.Add(labelProdName);
-            panel2.Location = new Point(16, 126);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(491, 148);
-            panel2.TabIndex = 16;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(3, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 100);
-            pictureBox1.TabIndex = 14;
-            pictureBox1.TabStop = false;
-            // 
-            // progressBar1
-            // 
-            progressBar1.Location = new Point(117, 46);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(345, 46);
-            progressBar1.TabIndex = 13;
-            // 
-            // labelProdName
-            // 
-            labelProdName.AutoSize = true;
-            labelProdName.Location = new Point(6, 106);
-            labelProdName.Name = "labelProdName";
-            labelProdName.Size = new Size(97, 32);
-            labelProdName.TabIndex = 15;
-            labelProdName.Text = "Produkt";
             // 
             // labelMB
             // 
@@ -310,12 +278,12 @@
             labelMB.TabIndex = 12;
             labelMB.Text = "Najczęściej kupywane produkty:";
             // 
-            // klientaToolStripMenuItem
+            // panelProductStats
             // 
-            klientaToolStripMenuItem.Name = "klientaToolStripMenuItem";
-            klientaToolStripMenuItem.Size = new Size(502, 44);
-            klientaToolStripMenuItem.Text = "Klienta";
-            klientaToolStripMenuItem.Click += klientaToolStripMenuItem_Click;
+            panelProductStats.Location = new Point(16, 124);
+            panelProductStats.Name = "panelProductStats";
+            panelProductStats.Size = new Size(765, 493);
+            panelProductStats.TabIndex = 13;
             // 
             // FormAdminPanel
             // 
@@ -341,9 +309,6 @@
             panelPrevious.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -368,15 +333,12 @@
         private Panel panelPrevious;
         private Label labelIncome;
         private Panel panel1;
-        private PictureBox pictureBox1;
-        private ProgressBar progressBar1;
         private Label labelMB;
-        private Label labelProdName;
-        private Panel panel2;
         private ToolStripMenuItem programLojalnościowyToolStripMenuItem;
         private ToolStripMenuItem kartęLojalnościowaToolStripMenuItem;
         private ToolStripMenuItem ofertęToolStripMenuItem;
         private ToolStripMenuItem warToolStripMenuItem;
         private ToolStripMenuItem klientaToolStripMenuItem;
+        private Panel panelProductStats;
     }
 }

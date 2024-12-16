@@ -66,7 +66,7 @@ namespace StacjaPaliwUI
                 labelName.Text = product.name;
                 labelPricePerUnit.Text = $"{product.price} zł / {unit.name}";
 
-                pictureBoxProduct.BackgroundImage = getProductImage(product.image);
+                pictureBoxProduct.BackgroundImage = getImage(product.image);
             }
         }
 
@@ -97,7 +97,7 @@ namespace StacjaPaliwUI
             });
         }
 
-        private Bitmap getProductImage(string imageData)
+        private Bitmap getImage(string imageData)
         {
             if (imageData != "")
             {

@@ -191,6 +191,7 @@ namespace StacjaPaliwUI
 
                 dateTimePickerFrom.Value = dc.from;
                 labelIncome.Text = $"Przychód: {dc.salesTotal} zł";
+                
             }
             else
             {

@@ -8,18 +8,39 @@ using StacjaPaliwLogic.DataAccess;
 
 namespace StacjaPaliwUI
 {
+    internal struct ProductStatistic
+    {
+        public string image { get; set; }
+        public string name { get; set; }
+        public Decimal amount_sold { get; set; }
+        public Decimal income { get; set; }
+        public string unit { get; set; }
+    }
     internal class DataCruncher
     {
         public string dateRangeName { get; set; }
         public DateTime from { get; set; }
         public DateTime to { get; set; }
         public Decimal salesTotal { get; set; }
+        List<ProductStatistic> top5_products { get; set; }
 
-       
+        IDataAccess<Transaction> trDA = new DataAccess<Transaction>();
+        IDataAccess<TransactionItem> trItemDA = new DataAccess<TransactionItem>();
+        IDataAccess<Product> prodDA = new DataAccess<Product>();
+        
+        private void GetTop5Products()
+        {
+            IEnumerable<Transaction> transactions = trDA.GetAllRows()
+                                                        .Where(s => s.dateTime > from && s.dateTime < to);
+            // TODO: transactions matching date and transitems matching transaction ids
+            foreach (Transaction transaction in transactions)
+            {
+
+            }
+        }
         private void GetSalesTotal()
         {
-            IDataAccess<Transaction> transactionDA = new DataAccess<Transaction>();
-            IEnumerable<Transaction> transactions = transactionDA.GetAllRows()
+            IEnumerable<Transaction> transactions = trDA.GetAllRows()
                                                                  .Where(s => s.dateTime > from && s.dateTime < to);
             foreach (Transaction transaction in transactions)
             {
@@ -60,6 +81,7 @@ namespace StacjaPaliwUI
             to = _to;
 
             GetSalesTotal();
+            GetTop5Products();
         }
     }
 }
