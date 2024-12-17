@@ -52,7 +52,7 @@ namespace StacjaPaliwUI
             {
                 product = prodDA.ReadRow(existingTransactionItem.product_id);
 
-                pictureBoxProduct.BackgroundImage = getProductImage(product.image);
+                pictureBoxProduct.BackgroundImage = getImage(product.image);
                 lockFillControlsProductAlreadyInCheckout(unitDA.ReadRow(product.unit_id));
                 return;
             }

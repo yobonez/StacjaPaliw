@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using StacjaPaliwLogic.Models;
 using StacjaPaliwLogic.DataAccess;
+using System.Diagnostics;
+using System.Net.Http.Headers;
 
 namespace StacjaPaliwUI
 {
@@ -16,6 +18,22 @@ namespace StacjaPaliwUI
         public Decimal income { get; set; }
         public string unit { get; set; }
     }
+    class PSSortByAmountSold : IComparer<ProductStatistic>
+    {
+        public int Compare(ProductStatistic x, ProductStatistic y)
+        {
+            return y.amount_sold.CompareTo(x.amount_sold);
+        }
+    }
+
+    class PSSortByIncome : IComparer<ProductStatistic>
+    {
+        public int Compare(ProductStatistic x, ProductStatistic y)
+        {
+            return y.income.CompareTo(x.income);
+        }
+    }
+
     internal class DataCruncher
     {
         public string dateRangeName { get; set; }
@@ -27,15 +45,91 @@ namespace StacjaPaliwUI
         IDataAccess<Transaction> trDA = new DataAccess<Transaction>();
         IDataAccess<TransactionItem> trItemDA = new DataAccess<TransactionItem>();
         IDataAccess<Product> prodDA = new DataAccess<Product>();
+        IDataAccess<Unit> unitDA = new DataAccess<Unit>();
         
-        private void GetTop5Products()
+        private void GetTopProducts()
         {
-            IEnumerable<Transaction> transactions = trDA.GetAllRows()
+            SortedSet<ProductStatistic> selectedProductsBySoldDesc = new SortedSet<ProductStatistic>(new PSSortByAmountSold());
+            SortedSet<ProductStatistic> selectedProductsByIncomeDesc = new SortedSet<ProductStatistic>(new PSSortByIncome());
+            IEnumerable<Transaction> transactionsFromToDate = trDA.GetAllRows()
                                                         .Where(s => s.dateTime > from && s.dateTime < to);
-            // TODO: transactions matching date and transitems matching transaction ids
-            foreach (Transaction transaction in transactions)
-            {
 
+            List<TransactionItem> transactionItems = trItemDA.GetAllRows();
+            List<Product> products = prodDA.GetAllRows();
+            List<Unit> units = unitDA.GetAllRows();
+
+            List<TransactionItem> matchingTrItems = new List<TransactionItem>();
+            List<KeyValuePair<Product, Decimal>> productIncomes = new List<KeyValuePair<Product, Decimal>>();
+            List<KeyValuePair<Product, Decimal>> productSolds = new List<KeyValuePair<Product, Decimal>>();
+
+            foreach(Transaction transaction in transactionsFromToDate)
+            {
+                foreach(TransactionItem item in transactionItems)
+                {
+                    if (item.transaction_id == transaction.id)
+                    {
+                        matchingTrItems.Add(item);
+                    }
+                }
+            }
+
+            HashSet<Product> matchingProducts = new HashSet<Product>();
+            foreach(Product product in products)
+            {
+                foreach (TransactionItem item in matchingTrItems)
+                {
+                    if (item.product_id == product.id)
+                    {
+                        productIncomes.Add(new KeyValuePair<Product, Decimal>(product, item.unit_amount * item.price_per_unit));
+                        productSolds.Add(new KeyValuePair<Product, Decimal>(product, item.unit_amount));
+                        matchingProducts.Add(product);
+                    }
+                }
+            }
+
+            //Dictionary<Product, Decimal> productIncomeTotals = new Dictionary<Product, Decimal>();
+            //Dictionary<Product, Decimal> productSoldTotals = new Dictionary<Product, Decimal>();
+
+            foreach(Product product in matchingProducts)
+            {
+                Decimal incomeTotal = 0;
+                Decimal soldTotal = 0;
+                foreach(KeyValuePair<Product, Decimal> item in productIncomes)
+                {
+                    if(product.id == item.Key.id)
+                    {
+                        incomeTotal += item.Value;
+                    }
+                }
+                foreach (KeyValuePair<Product, Decimal> item in productSolds)
+                {
+                    if (product.id == item.Key.id)
+                    {
+                        soldTotal += item.Value;
+                    }
+                }
+
+                //productIncomeTotals.Add(product, incomeTotal);
+                //productSoldTotals.Add(product, soldTotal);
+
+
+                selectedProductsByIncomeDesc.Add(new ProductStatistic()
+                {
+                    name = product.name,
+                    amount_sold = soldTotal,
+                    image = product.image,
+                    income = incomeTotal,
+                    unit = unitDA.ReadRow(product.unit_id).name
+                });
+
+                selectedProductsBySoldDesc.Add(new ProductStatistic()
+                {
+                    name = product.name,
+                    amount_sold = soldTotal,
+                    image = product.image,
+                    income = incomeTotal,
+                    unit = unitDA.ReadRow(product.unit_id).name
+                });
             }
         }
         private void GetSalesTotal()
@@ -74,6 +168,7 @@ namespace StacjaPaliwUI
             }
 
             GetSalesTotal();
+            GetTopProducts();
         }
         public DataCruncher(DateTime _from, DateTime _to) 
         {
@@ -81,7 +176,7 @@ namespace StacjaPaliwUI
             to = _to;
 
             GetSalesTotal();
-            GetTop5Products();
+            GetTopProducts();
         }
     }
 }
