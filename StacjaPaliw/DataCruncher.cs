@@ -10,7 +10,7 @@ using System.Net.Http.Headers;
 
 namespace StacjaPaliwUI
 {
-    internal struct ProductStatistic
+    public struct ProductStatistic
     {
         public string image { get; set; }
         public string name { get; set; }
@@ -40,14 +40,15 @@ namespace StacjaPaliwUI
         public DateTime from { get; set; }
         public DateTime to { get; set; }
         public Decimal salesTotal { get; set; }
-        List<ProductStatistic> top5_products { get; set; }
+        public Decimal amountSoldTotal { get; set; }
+        public List<ProductStatistic> selectedProducts { get; set; }
 
         IDataAccess<Transaction> trDA = new DataAccess<Transaction>();
         IDataAccess<TransactionItem> trItemDA = new DataAccess<TransactionItem>();
         IDataAccess<Product> prodDA = new DataAccess<Product>();
         IDataAccess<Unit> unitDA = new DataAccess<Unit>();
         
-        private void GetTopProducts()
+        public void SetTopProducts(bool bySold)
         {
             SortedSet<ProductStatistic> selectedProductsBySoldDesc = new SortedSet<ProductStatistic>(new PSSortByAmountSold());
             SortedSet<ProductStatistic> selectedProductsByIncomeDesc = new SortedSet<ProductStatistic>(new PSSortByIncome());
@@ -130,15 +131,41 @@ namespace StacjaPaliwUI
                     income = incomeTotal,
                     unit = unitDA.ReadRow(product.unit_id).name
                 });
+
+                if(bySold)
+                {
+                    selectedProducts = selectedProductsBySoldDesc.ToList();
+                }
+                else
+                {
+                    selectedProducts = selectedProductsByIncomeDesc.ToList();
+                }
             }
         }
-        private void GetSalesTotal()
+        private void SetSalesTotal()
         {
             IEnumerable<Transaction> transactions = trDA.GetAllRows()
                                                                  .Where(s => s.dateTime > from && s.dateTime < to);
+
+            List<TransactionItem> transactionItems = trItemDA.GetAllRows();
+            List<TransactionItem> matchingTrItems = new List<TransactionItem>();
+
             foreach (Transaction transaction in transactions)
             {
                 salesTotal += transaction.value;
+
+                foreach (TransactionItem item in transactionItems)
+                {
+                    if (item.transaction_id == transaction.id)
+                    {
+                        matchingTrItems.Add(item);
+                    }
+                }
+            }
+
+            foreach(TransactionItem item in matchingTrItems)
+            {
+                amountSoldTotal += item.unit_amount;
             }
         }
         public DataCruncher(string _dateRangeName, bool _isPrevious)
@@ -167,16 +194,14 @@ namespace StacjaPaliwUI
                 to = DateTimeUtils.EndOfYear(now, _isPrevious);
             }
 
-            GetSalesTotal();
-            GetTopProducts();
+            SetSalesTotal();
         }
         public DataCruncher(DateTime _from, DateTime _to) 
         {
             from = _from;
             to = _to;
 
-            GetSalesTotal();
-            GetTopProducts();
+            SetSalesTotal();
         }
     }
 }

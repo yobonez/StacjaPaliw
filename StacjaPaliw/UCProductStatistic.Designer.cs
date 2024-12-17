@@ -30,10 +30,10 @@
         {
             labelNo = new Label();
             pictureBoxProductImage = new PictureBox();
-            progressBarAmountSold = new ProgressBar();
-            labelProductName = new Label();
+            progressBarValue = new ProgressBar();
             labelAmountSold = new Label();
             panel1 = new Panel();
+            labelProductName = new Label();
             labelIncome = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProductImage).BeginInit();
             panel1.SuspendLayout();
@@ -42,43 +42,35 @@
             // labelNo
             // 
             labelNo.AutoSize = true;
-            labelNo.Font = new Font("Segoe UI", 16F);
-            labelNo.Location = new Point(15, 46);
+            labelNo.Font = new Font("Segoe UI", 13F);
+            labelNo.Location = new Point(18, 16);
             labelNo.Name = "labelNo";
-            labelNo.Size = new Size(73, 59);
+            labelNo.Size = new Size(60, 47);
             labelNo.TabIndex = 20;
             labelNo.Text = "#1";
             // 
             // pictureBoxProductImage
             // 
             pictureBoxProductImage.Anchor = AnchorStyles.None;
-            pictureBoxProductImage.Location = new Point(55, 9);
+            pictureBoxProductImage.BackgroundImage = Properties.Resources.NoImage;
+            pictureBoxProductImage.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBoxProductImage.Location = new Point(174, 3);
             pictureBoxProductImage.Name = "pictureBoxProductImage";
-            pictureBoxProductImage.Size = new Size(100, 98);
+            pictureBoxProductImage.Size = new Size(95, 95);
             pictureBoxProductImage.TabIndex = 18;
             pictureBoxProductImage.TabStop = false;
             // 
-            // progressBarAmountSold
+            // progressBarValue
             // 
-            progressBarAmountSold.Location = new Point(317, 3);
-            progressBarAmountSold.Name = "progressBarAmountSold";
-            progressBarAmountSold.Size = new Size(412, 159);
-            progressBarAmountSold.TabIndex = 17;
-            // 
-            // labelProductName
-            // 
-            labelProductName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            labelProductName.Location = new Point(3, 111);
-            labelProductName.Name = "labelProductName";
-            labelProductName.Size = new Size(209, 32);
-            labelProductName.TabIndex = 19;
-            labelProductName.Text = "Nazwa";
-            labelProductName.TextAlign = ContentAlignment.MiddleCenter;
+            progressBarValue.Location = new Point(285, 3);
+            progressBarValue.Name = "progressBarValue";
+            progressBarValue.Size = new Size(171, 107);
+            progressBarValue.TabIndex = 17;
             // 
             // labelAmountSold
             // 
             labelAmountSold.AutoSize = true;
-            labelAmountSold.Location = new Point(735, 46);
+            labelAmountSold.Location = new Point(472, 19);
             labelAmountSold.Name = "labelAmountSold";
             labelAmountSold.Size = new Size(107, 32);
             labelAmountSold.TabIndex = 21;
@@ -88,15 +80,25 @@
             // 
             panel1.Controls.Add(pictureBoxProductImage);
             panel1.Controls.Add(labelProductName);
-            panel1.Location = new Point(94, 6);
+            panel1.Controls.Add(labelNo);
+            panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(217, 153);
+            panel1.Size = new Size(276, 107);
             panel1.TabIndex = 22;
+            // 
+            // labelProductName
+            // 
+            labelProductName.Font = new Font("Segoe UI", 8F);
+            labelProductName.Location = new Point(6, 63);
+            labelProductName.Name = "labelProductName";
+            labelProductName.Size = new Size(143, 32);
+            labelProductName.TabIndex = 19;
+            labelProductName.Text = "Nazwa";
             // 
             // labelIncome
             // 
             labelIncome.AutoSize = true;
-            labelIncome.Location = new Point(735, 81);
+            labelIncome.Location = new Point(472, 54);
             labelIncome.Name = "labelIncome";
             labelIncome.Size = new Size(128, 32);
             labelIncome.TabIndex = 23;
@@ -109,12 +111,13 @@
             Controls.Add(labelIncome);
             Controls.Add(panel1);
             Controls.Add(labelAmountSold);
-            Controls.Add(labelNo);
-            Controls.Add(progressBarAmountSold);
+            Controls.Add(progressBarValue);
             Name = "UCProductStatistic";
-            Size = new Size(866, 165);
+            Size = new Size(610, 112);
+            Load += UCProductStatistic_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBoxProductImage).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,10 +126,10 @@
 
         private Label labelNo;
         private PictureBox pictureBoxProductImage;
-        private ProgressBar progressBarAmountSold;
-        private Label labelProductName;
+        private ProgressBar progressBarValue;
         private Label labelAmountSold;
         private Panel panel1;
         private Label labelIncome;
+        private Label labelProductName;
     }
 }

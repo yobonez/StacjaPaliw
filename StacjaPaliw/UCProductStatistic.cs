@@ -15,16 +15,14 @@ namespace StacjaPaliwUI
     public partial class UCProductStatistic : UserControl
     {
         internal int prodNo = 0;
-        internal ProductStatistic productStatistic { get; set; }
+        public ProductStatistic productStatistic { get; set; }
+        public static Decimal total_income { get; set; }
+        public static Decimal total_amount_sold { get; set; }
+        public static bool byIncomeBySold { get; set; }
 
         public UCProductStatistic()
         {
             InitializeComponent();
-
-            pictureBoxProductImage.Image = getImage(productStatistic.image);
-            labelProductName.Text = productStatistic.name;
-            labelAmountSold.Text = $"{productStatistic.amount_sold} {productStatistic.unit}";
-            labelIncome.Text = $"{productStatistic.income} zł";
         }
 
         private Bitmap getImage(string imageData)
@@ -50,6 +48,17 @@ namespace StacjaPaliwUI
             {
                 return new Bitmap(Resources.NoImage);
             }
+        }
+
+        private void UCProductStatistic_Load(object sender, EventArgs e)
+        {
+            labelNo.Text = $"#{prodNo}";
+            pictureBoxProductImage.BackgroundImage = getImage(productStatistic.image);
+            labelProductName.Text = productStatistic.name;
+            labelAmountSold.Text = $"{productStatistic.amount_sold} {productStatistic.unit}";
+            labelIncome.Text = $"{productStatistic.income} zł";
+            progressBarValue.Value = (byIncomeBySold) ? (int)((productStatistic.income / total_income)*100) : (int)((productStatistic.amount_sold / total_amount_sold) * 100);
+
         }
     }
 }

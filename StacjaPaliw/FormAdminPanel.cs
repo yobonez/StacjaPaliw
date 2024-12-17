@@ -179,6 +179,49 @@ namespace StacjaPaliwUI
             InitializeDbAddWindow(typeof(Client), new Client(), propInfo);
         }
 
+        private void placeTopProducts(List<ProductStatistic> selectedProducts)
+        {
+            panelProductStats.Controls.Clear();
+
+            if (selectedProducts == null)
+            {
+                panelProductStats.Controls.Add(new Label()
+                {
+                    AutoSize = true,
+                    Text = "Brak elementów do wyświetlenia.",
+                    Location = new Point(10, 10)
+                });
+                return;
+            }
+
+            List<UCProductStatistic> topProducts = new List<UCProductStatistic>();
+
+            int prodCap = 0;
+            foreach (ProductStatistic prodStat in selectedProducts)
+            {
+                if (prodCap == 4) break;
+                topProducts.Add(new UCProductStatistic()
+                {
+                    prodNo = prodCap + 1,
+                    productStatistic = prodStat
+                });
+                prodCap++;
+            }
+
+            int x = 0, y = 0;
+
+            int prodNo = 1;
+            foreach (UCProductStatistic ps in topProducts)
+            {
+                panelProductStats.Controls.Add(ps);
+
+                ps.prodNo = prodNo;
+                ps.Location = new Point(x, y);
+                y += 115;
+                prodNo++;
+            }
+        }
+
         public void loadStats()
         {
             if (comboBoxDateRange.Text != "wybrany zakres...")
@@ -191,14 +234,43 @@ namespace StacjaPaliwUI
 
                 dateTimePickerFrom.Value = dc.from;
                 labelIncome.Text = $"Przychód: {dc.salesTotal} zł";
-                
-                
+
+                UCProductStatistic.total_amount_sold = dc.amountSoldTotal;
+                UCProductStatistic.total_income = dc.salesTotal;
+
+                if (comboBoxRankingBy.SelectedIndex == 0)
+                {
+                    dc.SetTopProducts(false);
+                    UCProductStatistic.byIncomeBySold = false;
+                }
+                else
+                {
+                    dc.SetTopProducts(true);
+                    UCProductStatistic.byIncomeBySold = true;
+                }
+                panelProductStats.Controls.Clear();
+
+                placeTopProducts(dc.selectedProducts);
             }
             else
             {
                 DataCruncher dc = new DataCruncher(dateTimePickerFrom.Value, dateTimePickerTo.Value);
 
                 labelIncome.Text = $"Przychód: {dc.salesTotal} zł";
+
+                if (comboBoxRankingBy.SelectedIndex == 0)
+                {
+                    dc.SetTopProducts(false);
+                    UCProductStatistic.byIncomeBySold = false;
+                }
+                else
+                {
+                    dc.SetTopProducts(true);
+                    UCProductStatistic.byIncomeBySold = true;
+                }
+                panelProductStats.Controls.Clear();
+
+                placeTopProducts(dc.selectedProducts);
             }
 
             return;
@@ -256,7 +328,19 @@ namespace StacjaPaliwUI
 
         private void radioButtonPrevious_CheckedChanged(object sender, EventArgs e)
         {
-            loadStats();
+            if (comboBoxDateRange.SelectedIndex != -1)
+                loadStats();
+        }
+
+        private void FormAdminPanel_Load(object sender, EventArgs e)
+        {
+            comboBoxRankingBy.SelectedIndex = 0;
+        }
+
+        private void comboBoxRankingBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxDateRange.SelectedIndex != -1)
+                loadStats();
         }
     }
 }

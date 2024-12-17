@@ -52,7 +52,7 @@
             panelPrevious = new Panel();
             labelIncome = new Label();
             panel1 = new Panel();
-            labelMB = new Label();
+            comboBoxRankingBy = new ComboBox();
             panelProductStats = new Panel();
             menuStrip2.SuspendLayout();
             panelDatePicker.SuspendLayout();
@@ -261,28 +261,29 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboBoxRankingBy);
             panel1.Controls.Add(panelProductStats);
-            panel1.Controls.Add(labelMB);
             panel1.Controls.Add(labelIncome);
             panel1.Location = new Point(26, 249);
             panel1.Name = "panel1";
             panel1.Size = new Size(1037, 620);
             panel1.TabIndex = 12;
             // 
-            // labelMB
+            // comboBoxRankingBy
             // 
-            labelMB.AutoSize = true;
-            labelMB.Location = new Point(16, 78);
-            labelMB.Name = "labelMB";
-            labelMB.Size = new Size(354, 32);
-            labelMB.TabIndex = 12;
-            labelMB.Text = "Najczęściej kupywane produkty:";
+            comboBoxRankingBy.FormattingEnabled = true;
+            comboBoxRankingBy.Items.AddRange(new object[] { "Najlepsza sprzedaż produktów wg jednostek:", "Najlepsza sprzedaż produktów wg przychodu:" });
+            comboBoxRankingBy.Location = new Point(16, 78);
+            comboBoxRankingBy.Name = "comboBoxRankingBy";
+            comboBoxRankingBy.Size = new Size(610, 40);
+            comboBoxRankingBy.TabIndex = 14;
+            comboBoxRankingBy.SelectedIndexChanged += comboBoxRankingBy_SelectedIndexChanged;
             // 
             // panelProductStats
             // 
             panelProductStats.Location = new Point(16, 124);
             panelProductStats.Name = "panelProductStats";
-            panelProductStats.Size = new Size(765, 493);
+            panelProductStats.Size = new Size(610, 493);
             panelProductStats.TabIndex = 13;
             // 
             // FormAdminPanel
@@ -301,6 +302,7 @@
             MainMenuStrip = menuStrip1;
             Name = "FormAdminPanel";
             Text = "Panel administracyjny";
+            Load += FormAdminPanel_Load;
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();
             panelDatePicker.ResumeLayout(false);
@@ -333,12 +335,12 @@
         private Panel panelPrevious;
         private Label labelIncome;
         private Panel panel1;
-        private Label labelMB;
         private ToolStripMenuItem programLojalnościowyToolStripMenuItem;
         private ToolStripMenuItem kartęLojalnościowaToolStripMenuItem;
         private ToolStripMenuItem ofertęToolStripMenuItem;
         private ToolStripMenuItem warToolStripMenuItem;
         private ToolStripMenuItem klientaToolStripMenuItem;
         private Panel panelProductStats;
+        private ComboBox comboBoxRankingBy;
     }
 }
