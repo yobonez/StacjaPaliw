@@ -34,8 +34,11 @@
             groupBox1 = new GroupBox();
             labelCheckoutDiscountsValue = new Label();
             buttonClose = new Button();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransactionItems).BeginInit();
             groupBox1.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridViewTransactionItems
@@ -102,11 +105,28 @@
             buttonClose.Text = "Zamknij";
             buttonClose.UseVisualStyleBackColor = true;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(32, 32);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 942);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1539, 42);
+            statusStrip1.TabIndex = 8;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(95, 32);
+            toolStripStatusLabel1.Text = "Gotowy";
+            // 
             // FormShop
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1539, 950);
+            ClientSize = new Size(1539, 984);
+            Controls.Add(statusStrip1);
             Controls.Add(buttonClose);
             Controls.Add(groupBox1);
             Controls.Add(buttonPay);
@@ -117,7 +137,10 @@
             Load += FormShop_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransactionItems).EndInit();
             groupBox1.ResumeLayout(false);
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -127,5 +150,7 @@
         private GroupBox groupBox1;
         private Label labelCheckoutDiscountsValue;
         private Button buttonClose;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
     }
 }

@@ -6,6 +6,8 @@ namespace StacjaPaliwUI
 {
     public partial class FormShop : Form
     {
+        public event EventHandler transactionSuccess;
+
         IDataAccess<Transaction> transDA = new DataAccess<Transaction>();
         IDataAccess<TransactionItem> transItemDA = new DataAccess<TransactionItem>();
         IDataAccess<Product> prodDA = new DataAccess<Product>();
@@ -100,8 +102,21 @@ namespace StacjaPaliwUI
             placeProducts();
 
             loadCheckout();
+
+            transactionSuccess += FormShop_transactionSuccess;
         }
 
+        private void stubServerStuff()
+        {
+            toolStripStatusLabel1.Text = "Oczekiwanie na odpowiedź serwera...";
+            Thread.Sleep(2000);
+            transactionSuccess.Invoke(this, new EventArgs());
+        }
+        private void FormShop_transactionSuccess(object? sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Gotowy";
+            MessageBox.Show("Transakcja przebiegła pomyślnie.", "Transakcja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
         private void buttonPay_Click(object sender, EventArgs e)
         {
             StacjaPaliwStatus.transaction.dateTime = DateTime.Now;
@@ -114,7 +129,7 @@ namespace StacjaPaliwUI
 
             StacjaPaliwStatus.resetStatus();
 
-            MessageBox.Show("Transakcja przebiegła pomyślnie.", "Transakcja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Task.Run(stubServerStuff);
         }
     }
 }
