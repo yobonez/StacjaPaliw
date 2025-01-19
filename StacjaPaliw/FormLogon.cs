@@ -1,5 +1,6 @@
 ﻿using StacjaPaliwLogic.DataAccess;
 using StacjaPaliwLogic.Models;
+using System.Text.RegularExpressions;
 
 namespace StacjaPaliwUI
 {
@@ -19,7 +20,17 @@ namespace StacjaPaliwUI
             List<Employee> employees = employeeDA.GetAllRows();
             foreach (Employee employee in employees)
             {
-                if(employee.nickname == textBoxLogin.Text &&
+                // to by można wcisnąć do jakiejś oddzielnej klasy itp
+                // że jakiś Validator czy coś, ale to już końcówa projektu
+                // komu by się chciało
+                Regex usernameRegex = new Regex("^[a-z]{3,}$");
+                if (!usernameRegex.IsMatch(employee.nickname))
+                {
+                    MessageBox.Show("Nazwa użytkownika musi używać tylko i wyłącznie małych liter oraz mieć długość conajmniej 3 znaków.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (employee.nickname == textBoxLogin.Text &&
                    employee.password == textBoxPassword.Text)
                 {
                     success = true;

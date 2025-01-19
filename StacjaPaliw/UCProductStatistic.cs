@@ -49,7 +49,6 @@ namespace StacjaPaliwUI
             labelAmountSold.Text = $"{productStatistic.amount_sold} {productStatistic.unit}";
             labelIncome.Text = $"{productStatistic.income} zł";
             progressBarValue.Value = (byIncomeBySold) ? (int)((productStatistic.income / total_income)*100) : (int)((productStatistic.amount_sold / total_amount_sold) * 100);
-
         }
     }
 }

@@ -2,6 +2,7 @@
 using StacjaPaliwUI.Properties;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace StacjaPaliwUI
 {
@@ -46,7 +47,20 @@ namespace StacjaPaliwUI
 
             for (int i = 2; i < controls.Count; i += 2)
             {
-                //string propLabelText = controls[i - 1].Text;
+                string propLabelText = controls[i - 1].Text;
+                // to by można wcisnąć do jakiejś oddzielnej klasy itp
+                // że jakiś Validator czy coś, ale to już końcówa projektu
+                // komu by się chciało
+                if (propLabelText == "nickname")
+                {
+                    Regex usernameRegex = new Regex("^[a-z]{3,}$");
+                    if (!usernameRegex.IsMatch(controls[i].Text))
+                    {
+                        MessageBox.Show("Nazwa użytkownika musi używać tylko i wyłącznie małych liter oraz mieć długość conajmniej 3 znaków.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
                 string propTextBoxText = controls[i].Text;
                 controls[i].Text = "";
 
