@@ -18,17 +18,18 @@ namespace StacjaPaliwUI
 
             IDataAccess<Employee> employeeDA = new DataAccess<Employee>();
             List<Employee> employees = employeeDA.GetAllRows();
+
+            Regex usernameRegex = new Regex("^[a-z]{3,}$");
+            if (!usernameRegex.IsMatch(textBoxLogin.Text))
+            {
+                MessageBox.Show("Nazwa użytkownika musi używać tylko i wyłącznie małych liter oraz mieć długość conajmniej 3 znaków.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             foreach (Employee employee in employees)
             {
                 // to by można wcisnąć do jakiejś oddzielnej klasy itp
                 // że jakiś Validator czy coś, ale to już końcówa projektu
                 // komu by się chciało
-                Regex usernameRegex = new Regex("^[a-z]{3,}$");
-                if (!usernameRegex.IsMatch(employee.nickname))
-                {
-                    MessageBox.Show("Nazwa użytkownika musi używać tylko i wyłącznie małych liter oraz mieć długość conajmniej 3 znaków.", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
 
                 if (employee.nickname == textBoxLogin.Text &&
                    employee.password == textBoxPassword.Text)

@@ -108,8 +108,12 @@ namespace StacjaPaliwUI
 
         private void stubServerStuff()
         {
+            toolStripStatusLabel1.Text = "Czekaj...";
+            Thread.Sleep(5000);
+            toolStripStatusLabel1.Text = "Robie rzeczy jakies...";
+            Thread.Sleep(5000);
             toolStripStatusLabel1.Text = "Oczekiwanie na odpowiedź serwera...";
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             transactionSuccess.Invoke(this, new EventArgs());
         }
         private void FormShop_transactionSuccess(object? sender, EventArgs e)
