@@ -1,13 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using StacjaPaliwLogic.Models;
-using Newtonsoft.Json.Linq;
 
 namespace StacjaPaliwLogic.DataAccess
 {
